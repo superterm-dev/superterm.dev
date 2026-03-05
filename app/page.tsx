@@ -570,9 +570,9 @@ export default function Home() {
       <section className="py-28 px-6 border-t border-border/30">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center mb-20">
-            Set up in 60 seconds.
+            Managing agents in 30 seconds.
           </h2>
-          <div className="space-y-10">
+          <div className="space-y-10 mb-16">
             <Step
               n={1}
               cmd="curl -sLS https://superterm.dev/get.sh | sh"
@@ -583,6 +583,12 @@ export default function Home() {
               cmd="superterm up"
               desc="Attaches to your tmux sessions. Opens your browser."
             />
+          </div>
+
+          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-center mb-10 text-text">
+            Connect from anywhere.
+          </h3>
+          <div className="space-y-10">
             <Step
               n={3}
               cmd="cloudflared tunnel --url localhost:8080"
@@ -770,7 +776,7 @@ function Step({
         <div className="rounded-xl bg-surface/50 border border-border/60 px-5 py-3.5 font-mono text-sm text-accent/80 mb-2.5 overflow-x-auto">
           {cmd}
         </div>
-        <p className="text-[14px] text-text-muted">{desc}</p>
+        <p className="text-[14px] text-text/85">{desc}</p>
       </div>
     </div>
   );
