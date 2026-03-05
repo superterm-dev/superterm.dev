@@ -575,8 +575,8 @@ export default function Home() {
           <div className="space-y-10">
             <Step
               n={1}
-              cmd="curl -fsSL https://superterm.dev/install | sh"
-              desc="Single binary on your Linux box or cloud VM. On macOS: brew install tmux."
+              cmd="curl -sLS https://superterm.dev/get.sh | sh"
+              desc="Installs arkade and superterm to ~/bin. No sudo required."
             />
             <Step
               n={2}
@@ -586,7 +586,22 @@ export default function Home() {
             <Step
               n={3}
               cmd="cloudflared tunnel --url localhost:8080"
-              desc="Expose with Tailscale, Cloudflared, Ngrok, or Inlets. Custom domain, HTTPS. Access from any device."
+              desc="Cloudflare Tunnel option for HTTPS remote access."
+            />
+            <Step
+              n={4}
+              cmd="ngrok http 8080"
+              desc="ngrok option for quick public access."
+            />
+            <Step
+              n={5}
+              cmd="inlets-pro http client --upstream=http://127.0.0.1:8080"
+              desc="inlets-pro option for private self-hosted tunneling."
+            />
+            <Step
+              n={6}
+              cmd="tailscale funnel 8080"
+              desc="Tailscale option to securely expose port 8080."
             />
           </div>
         </div>
@@ -654,7 +669,7 @@ export default function Home() {
             />
             <FAQ
               q="How does remote access work?"
-              a="superterm runs on your machine. Expose it with HTTPS via Inlets, Ngrok, Cloudflared, or Tailscale. For fully private access, use Inlets with a VM on AWS, GCP, Hetzner, or DigitalOcean as the tunnel endpoint."
+              a="superterm runs on your machine. Expose it with HTTPS via Cloudflared (cloudflared tunnel --url localhost:8080), ngrok (ngrok http 8080), inlets-pro (inlets-pro http client --upstream=http://127.0.0.1:8080), or Tailscale (tailscale funnel 8080)."
             />
             <FAQ
               q="How private is it?"
