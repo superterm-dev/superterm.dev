@@ -37,7 +37,7 @@ function TerminalScreenshot() {
           <SessionRow name="db-migrate" sub="aider" status="idle" attention={12} />
           <SessionRow name="google-mcp" sub="gemini cli" status="active" attention={45} />
           <SessionRow name="qwen3-finetune" sub="llama.cpp" status="active" attention={30} />
-          <SessionRow name="monitoring" status="idle" attention={5} />
+          <SessionRow name="neovim" status="idle" attention={5} />
         </div>
         {/* terminal area with tmux panes */}
         <div className="flex-1 flex flex-col min-w-0">
@@ -429,7 +429,7 @@ export default function Home() {
               <ArrowRightIcon className="w-4 h-4" />
             </a>
             <span className="text-[13px] text-text-muted">
-              No credit card &middot; $250/year after trial
+              $250/year after trial
             </span>
           </div>
         </div>
@@ -550,7 +550,7 @@ export default function Home() {
             <FeatureCard
               icon={<ShieldIcon className="w-5 h-5" />}
               title="Privacy mode"
-              desc="One-click mask for screen sharing, screenshots, and social posts. Share your workflow without leaking API keys or credentials."
+              desc="One-click mask for screen sharing, screenshots, and social sharing. Share your workflow without leaking API keys or credentials."
             />
             <FeatureCard
               icon={<MonitorIcon className="w-5 h-5" />}
@@ -575,7 +575,7 @@ export default function Home() {
           <div className="space-y-10 mb-16">
             <Step
               n={1}
-              cmd="curl -sLS https://superterm.dev/get.sh | sh"
+              cmd="curl -sLS https://superterm.dev/get.sh | bash"
               desc="Installs arkade and superterm to ~/bin. No sudo required."
             />
             <Step
@@ -633,11 +633,12 @@ export default function Home() {
               <PricingItem text="Unlimited sessions" />
               <PricingItem text="Attention system with sparklines" />
               <PricingItem text="Mobile-friendly dashboard" />
-              <PricingItem text="Privacy / mask mode" />
+              <PricingItem text="Privacy / mask mode for social sharing" />
               <PricingItem text="Works with any agent or shell" />
               <PricingItem text="Linux, macOS, Windows (WSL)" />
               <PricingItem text="Remote access via tunnel of your choice" />
-              <PricingItem text="All future updates" />
+              <PricingItem text="Custom font/theme support" />
+              <PricingItem text="Regular updates" />
             </ul>
             <a
               href="https://buy.polar.sh/polar_cl_v0xeZUxJHqIwVNsctqTsIicy1othtVizTEs9u0Xi19s"
@@ -662,8 +663,12 @@ export default function Home() {
           </h2>
           <div className="space-y-3">
             <FAQ
-              q="How is this different from Ghostty, Kitty, or Alacritty?"
+              q="Why not just use Ghostty, Kitty, or Alacritty?"
               a="superterm isn't a terminal emulator. It's the layer above. A session-aware dashboard for your tmux sessions. Keep using Ghostty locally and check on your agents from your phone with superterm."
+            />
+            <FAQ
+              q="How can I stop Control + W from closing my browser?"
+              a="On macOS, Control + W does not close the browser tab; Command + W does. On Linux, install superterm as a PWA, then Control + W works for terminal editing without closing your browser tab."
             />
             <FAQ
               q="How does it compare to multi-agent orchestrators?"
