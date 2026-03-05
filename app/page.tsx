@@ -1,3 +1,4 @@
+import Script from "next/script";
 import {
   LogoIcon,
   EyeIcon,
@@ -605,7 +606,7 @@ export default function Home() {
               $250<span className="text-lg text-text-muted font-normal tracking-normal">/year</span>
             </div>
             <div className="text-[14px] text-text-muted/60 mb-10">
-              14-day free trial &middot; No credit card required
+              14-day free trial
             </div>
             <ul className="text-[14px] text-left space-y-3.5 mb-10 max-w-xs mx-auto">
               <PricingItem text="Unlimited sessions" />
@@ -618,11 +619,16 @@ export default function Home() {
               <PricingItem text="All future updates" />
             </ul>
             <a
-              href="#"
+              href="https://buy.polar.sh/polar_cl_v0xeZUxJHqIwVNsctqTsIicy1othtVizTEs9u0Xi19s"
+              data-polar-checkout=""
+              data-polar-checkout-theme="dark"
               className="block w-full py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm hover:bg-accent-dim transition-colors text-center"
             >
-              Start free trial
+              Start free for 14 days
             </a>
+            <p className="mt-3 text-[12px] leading-relaxed text-text-muted/85">
+              You&apos;ll be charged the full $250/year amount after 14 days unless you cancel before trial end.
+            </p>
           </div>
         </div>
       </section>
@@ -680,6 +686,11 @@ export default function Home() {
           <div>&copy; {new Date().getFullYear()} superterm. All rights reserved.</div>
         </div>
       </footer>
+      <Script
+        src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.1/dist/embed.global.js"
+        strategy="afterInteractive"
+        data-auto-init=""
+      />
     </div>
   );
 }
