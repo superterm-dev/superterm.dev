@@ -67,8 +67,8 @@ function TerminalScreenshot() {
             {/* top pane — main terminal */}
             <div className="flex-1 p-4 sm:p-5 text-xs sm:text-sm leading-relaxed font-mono">
               <pre className="mb-2 text-text-muted/90 leading-tight whitespace-pre overflow-x-auto">
-{`╭─── Claude Code v2.1.69 ───────────────────────────────╮
-│ Welcome back Alex!              Sonnet 4.6 · Claude Max │
+{`╭─── Claude Code v2.1.69 ──────────────────────────────────╮
+│ Welcome back Alex!              Sonnet 4.6 · Claude Max  │
 ╰──────────────────────────────────────────────────────────╯`}
               </pre>
               <div className="text-text mb-1">❯ Add superterm as an alias to arkade oci install</div>
