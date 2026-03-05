@@ -27,37 +27,45 @@ function TerminalScreenshot() {
           <span className="w-3 h-3 rounded-full bg-accent/70" />
         </div>
         <span className="text-xs text-text-muted/60 ml-2 font-mono">superterm</span>
-        <div className="ml-auto flex items-center gap-2 text-text-muted/75">
-          <span className="inline-flex items-center gap-1 rounded-md border border-border-bright/60 bg-bg/40 px-2 py-0.5 text-[10px] font-mono">
-            <CommandSpotlightIcon className="w-3 h-3" />
-            <span>⌘K</span>
-          </span>
-          <span className="inline-flex items-center gap-1 rounded-md border border-border-bright/60 bg-bg/40 px-2 py-0.5 text-[10px] font-mono">
-            <MaskIcon className="w-3 h-3" />
-            <span>Mask</span>
-          </span>
-        </div>
       </div>
       {/* body */}
-      <div className="flex min-h-[340px] sm:min-h-[420px] lg:min-h-[480px]">
+      <div className="flex min-h-[360px] sm:min-h-[450px] lg:min-h-[510px]">
         {/* sidebar */}
-        <div className="w-48 sm:w-56 border-r border-border bg-surface-2/30 p-3 hidden sm:block">
-          <div className="text-[10px] uppercase tracking-[0.15em] text-text-muted/50 mb-3 font-sans font-medium">
-            Sessions
+        <div className="w-48 sm:w-56 border-r border-border bg-surface-2/30 p-3 hidden sm:flex flex-col">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.15em] text-text-muted/50 font-sans font-medium">
+              <LogoIcon className="w-3.5 h-3.5 text-accent/70" />
+              <span>superterm</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-text-muted/70">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded border border-border-bright/60 bg-bg/30">
+                <CommandSpotlightIcon className="w-3 h-3" />
+              </span>
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded border border-border-bright/60 bg-bg/30">
+                <MaskIcon className="w-3 h-3" />
+              </span>
+            </div>
           </div>
-          <SessionRow name="auth-refactor" sub="claude code" status="active" attention={85} />
-          <SessionRow name="payments-api" sub="codex" status="waiting" attention={60} />
-          <SessionRow name="db-migrate" sub="aider" status="idle" attention={12} />
-          <SessionRow name="google-mcp" sub="gemini cli" status="active" attention={45} />
-          <SessionRow name="qwen3-finetune" sub="llama.cpp" status="active" attention={30} />
-          <SessionRow name="neovim" status="idle" attention={5} />
+          <div className="flex-1">
+            <SessionRow name="auth-refactor" sub="claude code" status="active" attention={85} />
+            <SessionRow name="payments-api" sub="codex" status="waiting" attention={60} />
+            <SessionRow name="db-migrate" sub="aider" status="idle" attention={12} />
+            <SessionRow name="google-mcp" sub="gemini cli" status="active" attention={45} />
+            <SessionRow name="qwen3-finetune" sub="llama.cpp" status="active" attention={30} />
+            <SessionRow name="neovim" status="idle" attention={5} />
+          </div>
+          <div className="mt-3">
+            <div className="text-[11px] font-mono text-text/85 border border-border-bright/70 rounded px-2 py-1 text-center bg-bg/20">
+              [+ Session]
+            </div>
+          </div>
         </div>
         {/* terminal area with tmux panes */}
         <div className="flex-1 flex flex-col min-w-0">
           {/* tmux panes */}
           <div className="flex-1 flex flex-col">
             {/* top pane — main terminal */}
-            <div className="flex-1 p-4 text-xs sm:text-sm leading-relaxed font-mono">
+            <div className="flex-1 p-4 sm:p-5 text-xs sm:text-sm leading-relaxed font-mono">
               <pre className="mb-2 text-text-muted/90 leading-tight whitespace-pre overflow-x-auto">
 {`╭─── Claude Code v2.1.69 ───────────────────────────────╮
 │ Welcome back Alex!              Sonnet 4.6 · Claude Max │
@@ -78,7 +86,7 @@ function TerminalScreenshot() {
             {/* tmux pane border */}
             <div className="h-px bg-[#009f00] mx-0" />
             {/* bottom pane — smaller, shows a running process */}
-            <div className="h-36 sm:h-40 p-3 text-[10px] sm:text-xs leading-relaxed text-text-muted font-mono overflow-hidden">
+            <div className="h-40 sm:h-44 p-3 sm:p-4 text-[10px] sm:text-xs leading-relaxed text-text-muted font-mono overflow-hidden">
               <div className="flex gap-2 mb-1">
                 <span className="text-accent select-none">$</span>
                 <span className="text-text">superterm status</span>
