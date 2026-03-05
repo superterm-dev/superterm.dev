@@ -1,7 +1,7 @@
 export function LogoIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 32 32" fill="none">
-      <rect width="32" height="32" rx="6" fill="currentColor" opacity={0.1} />
+      <rect width="32" height="32" rx="6" fill="#09090b" />
       <polyline points="7,11 12,16 7,21" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" />
       <line x1="16" y1="9" x2="16" y2="23" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" opacity={0.5} />
       <rect x="19" y="13" width="6" height="7" rx="1" fill="currentColor" opacity={0.7} />
