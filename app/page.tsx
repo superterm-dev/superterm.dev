@@ -11,6 +11,7 @@ import {
   ChevronDownIcon,
   ArrowRightIcon,
 } from "./icons";
+import { TunnelTabs } from "./TunnelTabs";
 
 /* ─── mock terminal screenshot ─── */
 function TerminalScreenshot() {
@@ -585,30 +586,11 @@ export default function Home() {
             />
           </div>
 
-          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-center mb-10 text-text">
-            Connect from anywhere.
-          </h3>
-          <div className="space-y-10">
-            <Step
-              n={3}
-              cmd="cloudflared tunnel --url localhost:8080"
-              desc="Cloudflare Tunnel option for HTTPS remote access."
-            />
-            <Step
-              n={4}
-              cmd="ngrok http 8080"
-              desc="ngrok option for quick public access."
-            />
-            <Step
-              n={5}
-              cmd="inlets-pro http client --upstream=http://127.0.0.1:8080"
-              desc="inlets-pro option for private self-hosted tunneling."
-            />
-            <Step
-              n={6}
-              cmd="tailscale funnel 8080"
-              desc="Tailscale option to securely expose port 8080."
-            />
+          <div className="hidden sm:block">
+            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-center mb-10 text-text">
+              Connect from anywhere.
+            </h3>
+            <TunnelTabs />
           </div>
         </div>
       </section>
@@ -684,7 +666,7 @@ export default function Home() {
             />
             <FAQ
               q="How private is it?"
-              a="Completely. superterm is self-hosted. Your terminal data stays on your machine. Nothing is sent to any cloud service. The binary runs locally, the sessions are local, and the tunnel is yours."
+              a="Completely. superterm is self-hosted. Your terminal data stays on your machine. Nothing is sent to any cloud service. The binary runs locally, the sessions are local, and the tunnel is yours. A 32-character random key is generated automatically to prevent unauthorized access."
             />
             <FAQ
               q="What does the attention system do?"
