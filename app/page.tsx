@@ -10,6 +10,8 @@ import {
   CheckIcon,
   ChevronDownIcon,
   ArrowRightIcon,
+  CommandSpotlightIcon,
+  MaskIcon,
 } from "./icons";
 import { TunnelTabs } from "./TunnelTabs";
 
@@ -25,6 +27,16 @@ function TerminalScreenshot() {
           <span className="w-3 h-3 rounded-full bg-accent/70" />
         </div>
         <span className="text-xs text-text-muted/60 ml-2 font-mono">superterm</span>
+        <div className="ml-auto flex items-center gap-2 text-text-muted/75">
+          <span className="inline-flex items-center gap-1 rounded-md border border-border-bright/60 bg-bg/40 px-2 py-0.5 text-[10px] font-mono">
+            <CommandSpotlightIcon className="w-3 h-3" />
+            <span>⌘K</span>
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-md border border-border-bright/60 bg-bg/40 px-2 py-0.5 text-[10px] font-mono">
+            <MaskIcon className="w-3 h-3" />
+            <span>Mask</span>
+          </span>
+        </div>
       </div>
       {/* body */}
       <div className="flex min-h-[340px] sm:min-h-[420px] lg:min-h-[480px]">
@@ -46,56 +58,79 @@ function TerminalScreenshot() {
           <div className="flex-1 flex flex-col">
             {/* top pane — main terminal */}
             <div className="flex-1 p-4 text-xs sm:text-sm leading-relaxed font-mono">
-              <TerminalLine
-                prompt="$"
-                cmd="claude --model opus 'refactor auth module'"
-              />
-              <TerminalOutput text="Analyzing src/auth/ ... 14 files" />
-              <TerminalOutput text="Refactoring session.ts .......... done" />
-              <TerminalOutput text="Refactoring middleware.ts ....... done" />
-              <TerminalOutput text="Running tests .................. 47/47 passed" />
-              <TerminalLine prompt="$" cmd="superterm status" />
-              <div className="mt-1 font-mono text-[11px] sm:text-xs">
-                <div className="flex gap-6 text-text-muted/60 mb-1">
-                  <span className="w-28">SESSION</span>
-                  <span className="w-16 text-right">CPU</span>
-                  <span className="w-20 text-right">ATTENTION</span>
-                </div>
-                <StatusRow name="auth-refactor" cpu="23%" attention="HIGH" color="text-accent" />
-                <StatusRow name="payments-api" cpu="2%" attention="WAITING" color="text-amber" />
-                <StatusRow name="google-mcp" cpu="0%" attention="low" color="text-text-muted" />
-                <StatusRow name="db-migrate" cpu="41%" attention="MED" color="text-amber" />
+              <pre className="mb-2 text-text-muted/90 leading-tight whitespace-pre overflow-x-auto">
+{`╭─── Claude Code v2.1.69 ───────────────────────────────╮
+│ Welcome back Alex!              Sonnet 4.6 · Claude Max │
+╰──────────────────────────────────────────────────────────╯`}
+              </pre>
+              <div className="text-text mb-1">❯ Add superterm as an alias to arkade oci install</div>
+              <div className="text-accent/90 mb-1">● Searched for 1 pattern, read 1 file (ctrl+o to expand)</div>
+              <div className="text-accent/90 mb-2">● Update(cmd/oci/install.go)</div>
+              <div className="text-text-muted/90 mb-1">  ⎿ Added 2 lines</div>
+              <div className="text-text-muted/90 mb-1">85  case &quot;slicer&quot;: imageName = &quot;ghcr.io/openfaasltd/slicer&quot;</div>
+              <div className="text-accent/90 mb-1">87 + case &quot;superterm&quot;:</div>
+              <div className="text-accent/90 mb-1">88 +   imageName = &quot;ghcr.io/openfaasltd/superterm&quot;</div>
+              <div className="mt-2 text-text">
+                ● Done. superterm is now a shortcut alias, so <span className="text-accent/90">arkade oci install superterm</span> resolves correctly.
               </div>
-              <div className="mt-3">
-                <TerminalLine prompt="$" cmd="" cursor />
-              </div>
+              <div className="mt-2 text-accent/90">❯</div>
             </div>
             {/* tmux pane border */}
-            <div className="h-px bg-accent/20 mx-0" />
+            <div className="h-px bg-[#009f00] mx-0" />
             {/* bottom pane — smaller, shows a running process */}
-            <div className="h-24 sm:h-28 p-3 text-[10px] sm:text-xs leading-relaxed text-text-muted font-mono overflow-hidden">
-              <div className="flex gap-2 mb-0.5">
+            <div className="h-36 sm:h-40 p-3 text-[10px] sm:text-xs leading-relaxed text-text-muted font-mono overflow-hidden">
+              <div className="flex gap-2 mb-1">
                 <span className="text-accent select-none">$</span>
-                <span className="text-text">codex --model o4-mini &apos;add stripe webhook tests&apos;</span>
+                <span className="text-text">superterm status</span>
               </div>
-              <div className="mb-0.5">Scanning src/webhooks/ ... 6 files</div>
-              <div className="mb-0.5">Generating test_stripe_webhook.py .......</div>
-              <div className="flex gap-2">
-                <span className="text-accent select-none">&#9608;</span>
+              <div className="flex gap-3 text-text-muted/75 mb-0.5">
+                <span className="w-20 sm:w-24">SESSION</span>
+                <span className="w-8 sm:w-10 text-right">CPU</span>
+                <span className="w-14 sm:w-16 text-right">ATTENTION</span>
+                <span className="flex-1">ACTIVITY</span>
+              </div>
+              <div className="flex gap-3 mb-0.5">
+                <span className="w-20 sm:w-24 text-text">claude</span>
+                <span className="w-8 sm:w-10 text-right">18%</span>
+                <span className="w-14 sm:w-16 text-right text-accent">high</span>
+                <span className="flex-1 text-accent">▁▂▃▅▇▆▅▄▃▂</span>
+              </div>
+              <div className="flex gap-3 mb-0.5">
+                <span className="w-20 sm:w-24 text-text">payments</span>
+                <span className="w-8 sm:w-10 text-right">2%</span>
+                <span className="w-14 sm:w-16 text-right text-amber">wait</span>
+                <span className="flex-1 text-accent">▁▁▁▂▁▁▁▁▁▁</span>
+              </div>
+              <div className="flex gap-3 mb-0.5">
+                <span className="w-20 sm:w-24 text-text">neovim</span>
+                <span className="w-8 sm:w-10 text-right">0%</span>
+                <span className="w-14 sm:w-16 text-right text-text-muted">idle</span>
+                <span className="flex-1 text-accent">▁▁▁▁▁▁▁▁▁▁</span>
+              </div>
+              <div className="flex gap-3 mb-0.5">
+                <span className="w-20 sm:w-24 text-text">buildkite</span>
+                <span className="w-8 sm:w-10 text-right">6%</span>
+                <span className="w-14 sm:w-16 text-right text-accent">low</span>
+                <span className="flex-1 text-accent">▁▁▂▁▁▃▂▁▁▁</span>
+              </div>
+              <div className="flex gap-3 mb-0.5">
+                <span className="w-20 sm:w-24 text-text">agent-sync</span>
+                <span className="w-8 sm:w-10 text-right">0%</span>
+                <span className="w-14 sm:w-16 text-right text-text-muted">idle</span>
+                <span className="flex-1 text-accent">▁▁▁▁▁▁▁▁▁▁</span>
+              </div>
+              <div className="flex gap-3">
+                <span className="w-20 sm:w-24 text-text">docs-bot</span>
+                <span className="w-8 sm:w-10 text-right">3%</span>
+                <span className="w-14 sm:w-16 text-right text-accent">low</span>
+                <span className="flex-1 text-accent">▁▂▁▁▂▁▁▃▁▁</span>
               </div>
             </div>
           </div>
           {/* tmux status bar */}
-          <div className="flex items-center justify-between px-3 py-1 bg-surface-2/80 border-t border-border text-[10px] font-mono">
-            <div className="flex items-center gap-3 text-text-muted/60">
-              <span>[auth-refactor]</span>
-              <span>0:claude*</span>
-              <span>1:codex-</span>
-              <span>2:bash</span>
-            </div>
-            <div className="text-text-muted/40">
-              &quot;mini-pc&quot; 14:32
-            </div>
+          <div className="flex items-center justify-between px-3 py-1 bg-[#009f00] border-t border-[#007f00] text-[10px] font-mono text-black">
+            <div>[superterm] 2:bash  3:codex*  4:claude</div>
+            <div>&quot;minipc&quot; 18:56 05-Mar-26</div>
           </div>
         </div>
       </div>
