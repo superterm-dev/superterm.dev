@@ -545,16 +545,16 @@ export default function Home() {
                 Your Mac is the thin client.
               </h2>
               <p className="text-text/60 leading-relaxed mb-8 text-[15px]">
-                Run agents on a Linux box, cloud VM, or mini PC. Check in from your Mac, iPad, or phone. Handle permission prompts on a walk or while picking up coffee.
+                Run agents on a Linux box, cloud VM, or mini PC. Use phone or tablet to check progress and unblock agents when you are away from your desk. A tablet with a Bluetooth keyboard is the ideal remote setup.
               </p>
               <ul className="space-y-4 text-[14px] text-text-muted">
                 <li className="flex items-start gap-3">
                   <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                  <span>Full terminal access from any browser</span>
+                  <span>Quick check-ins and unblocking from any browser</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                  <span>Mobile-optimised touch controls</span>
+                  <span>Best experience on tablet + Bluetooth keyboard</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
@@ -604,7 +604,7 @@ export default function Home() {
             <FeatureCard
               icon={<SmartphoneIcon className="w-5 h-5" />}
               title="Check from anywhere"
-              desc="Phone, tablet, laptop — any browser is a full terminal. Handle permission prompts on a walk or while picking up coffee."
+              desc="Use phone or tablet to check in, confirm prompts, and unblock agents while away from your desk. For full coding on a tablet or phone, you'll need a bluetooth keyboard."
             />
             <FeatureCard
               icon={<ShieldIcon className="w-5 h-5" />}
