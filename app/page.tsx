@@ -545,7 +545,7 @@ export default function Home() {
                 Your Mac is the thin client.
               </h2>
               <p className="text-text/60 leading-relaxed mb-8 text-[15px]">
-                Run agents on a Linux box, cloud VM, or mini PC. Check in from your Mac, iPad, or phone. Answer a permission prompt from the train. Approve a deploy from bed.
+                Run agents on a Linux box, cloud VM, or mini PC. Check in from your Mac, iPad, or phone. Handle permission prompts on a walk or while picking up coffee.
               </p>
               <ul className="space-y-4 text-[14px] text-text-muted">
                 <li className="flex items-start gap-3">
@@ -579,17 +579,32 @@ export default function Home() {
             <FeatureCard
               icon={<EyeIcon className="w-5 h-5" />}
               title="Attention system"
-              desc="Sparklines, status orbs, and bell detection across every session. Instantly see which agent finished, errored, or is waiting for you."
+              desc={
+                <>
+                  Sparklines, status orbs, and bell detection across every session. Instantly see which agent finished, errored, or is waiting for you.
+                  <span className="block mt-3">Use Logbook to keep goals and task lists tied to each session.</span>
+                </>
+              }
             />
             <FeatureCard
               icon={<BotIcon className="w-5 h-5" />}
               title="Agent agnostic"
-              desc="Claude Code, Codex, Gemini CLI, Aider, Claude Squad, custom scripts. If it runs in a terminal, superterm manages it. No lock-in. No SDK."
+              desc={
+                <>
+                  Claude Code, Codex, Gemini CLI, Aider, Claude Squad, custom scripts.
+                  <span className="block mt-2">
+                    <code className="inline-flex items-center px-2 py-1 rounded-md border border-border-bright/60 bg-bg/50 font-mono text-[12px] text-accent/90">
+                      superterm notify
+                    </code>
+                    <span className="ml-2">lets agents and scripts flag when they need you.</span>
+                  </span>
+                </>
+              }
             />
             <FeatureCard
               icon={<SmartphoneIcon className="w-5 h-5" />}
               title="Check from anywhere"
-              desc="Phone, tablet, laptop — any browser is a full terminal. Answer permission prompts from the train. Approve deploys from bed."
+              desc="Phone, tablet, laptop — any browser is a full terminal. Handle permission prompts on a walk or while picking up coffee."
             />
             <FeatureCard
               icon={<ShieldIcon className="w-5 h-5" />}
@@ -604,9 +619,25 @@ export default function Home() {
             <FeatureCard
               icon={<KeyboardIcon className="w-5 h-5" />}
               title="Keyboard-driven"
-              desc="Jump to any session with a keystroke. On mobile, touch-friendly Ctrl keys and pane navigation."
+              desc={
+                <>
+                  Learn tmux with a visual guide and build confidence fast.
+                  <span className="block mt-2">
+                    Use{" "}
+                  <code className="inline-flex items-center px-1.5 py-0.5 rounded border border-border-bright/60 bg-bg/50 font-mono text-[12px] text-accent/90">
+                    Control + P
+                  </code>{" "}
+                  for navigation, then type{" "}
+                  <code className="inline-flex items-center px-1.5 py-0.5 rounded border border-border-bright/60 bg-bg/50 font-mono text-[12px] text-accent/90">
+                    &gt;
+                  </code>{" "}
+                  to run commands.
+                  </span>
+                </>
+              }
             />
           </div>
+          <NotifyCutout />
         </div>
       </section>
 
@@ -625,7 +656,7 @@ export default function Home() {
             <Step
               n={2}
               cmd="superterm up"
-              desc="Attaches to your tmux sessions. Opens your browser."
+              desc="Attaches to your tmux sessions. Then click on the link."
             />
           </div>
 
@@ -633,6 +664,9 @@ export default function Home() {
             <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-center mb-10 text-text">
               Connect from anywhere.
             </h3>
+            <p className="text-center text-[14px] text-text-muted mb-8">
+              Supermux runs locally. If you want remote access, here are some options:
+            </p>
             <TunnelTabs />
           </div>
         </div>
@@ -687,6 +721,10 @@ export default function Home() {
             FAQ
           </h2>
           <div className="space-y-3">
+            <FAQ
+              q="Isn't this just tmux?"
+              a="tmux helps you run sessions. superterm helps you stay on top of them. Attention system: quickly see what needs you now. Logbook: keep goals and task lists per session so context stays clear."
+            />
             <FAQ
               q="Why not just use Ghostty, Kitty, or Alacritty?"
               a="superterm isn't a terminal emulator. It's the layer above. A session-aware dashboard for your tmux sessions. Keep using Ghostty locally and check on your agents from your phone with superterm."
@@ -775,7 +813,7 @@ function FeatureCard({
 }: {
   icon: React.ReactNode;
   title: string;
-  desc: string;
+  desc: React.ReactNode;
 }) {
   return (
     <div className="border border-border/60 rounded-xl p-7 bg-surface/50 hover:border-border-bright/60 transition-colors">
@@ -818,5 +856,22 @@ function PricingItem({ text }: { text: string }) {
       <CheckIcon className="w-4 h-4 text-accent flex-shrink-0" />
       <span className="text-text-muted">{text}</span>
     </li>
+  );
+}
+
+function NotifyCutout() {
+  return (
+    <div className="mt-8 rounded-xl border border-border-bright/60 bg-surface/60 p-5">
+      <div className="font-mono text-[12px] text-text-muted/70 mb-3">Signal what matters</div>
+      <div className="rounded-lg border border-border/70 bg-bg/40 p-4 font-mono text-[12px] leading-relaxed overflow-x-auto">
+        <div className="text-accent/90">$ superterm notify --session agent-1</div>
+        <div className="text-text-muted">bell only: mark that session as needing attention</div>
+        <div className="mt-2 text-accent/90">
+          $ superterm notify --session agent-1 --title "Claude Code" \<br />
+          &nbsp;&nbsp;--body "Claude wants to run tmux list-sessions"
+        </div>
+        <div className="text-text-muted">send a status update or request into your dashboard</div>
+      </div>
+    </div>
   );
 }
