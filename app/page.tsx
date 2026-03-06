@@ -561,6 +561,29 @@ export default function Home() {
                   <span>HTTPS via Tailscale, Cloudflared, Ngrok, or Inlets</span>
                 </li>
               </ul>
+              <div className="mt-8 rounded-xl border border-border/70 bg-surface/40 p-4">
+                <div className="text-[11px] uppercase tracking-[0.14em] text-text-muted/60 mb-3">
+                  Experience Guide
+                </div>
+                <div className="space-y-2.5 text-[13px] text-text-muted">
+                  <div className="flex items-center gap-2.5">
+                    <MonitorIcon className="w-4 h-4 text-accent/90" />
+                    <span><span className="text-text">Laptop</span> = full experience</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <SmartphoneIcon className="w-4 h-4 text-amber" />
+                    <span><span className="text-text">Phone</span> = check status and unblock agents</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-1 text-accent/80">
+                      <SmartphoneIcon className="w-4 h-4" />
+                      <span className="text-[11px] text-text-muted/70">+</span>
+                      <KeyboardIcon className="w-4 h-4" />
+                    </div>
+                    <span><span className="text-text">Tablet + Bluetooth keyboard</span> = closer to full coding</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="flex justify-center">
               <DeviceStack />
