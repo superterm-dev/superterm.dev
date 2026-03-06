@@ -757,6 +757,10 @@ export default function Home() {
               a="On macOS, Control + W does not close the browser tab; Command + W does. On Linux, install superterm as a PWA, then Control + W works for terminal editing without closing your browser tab."
             />
             <FAQ
+              q="What's the experience like on my iPhone or tablet?"
+              a="Your laptop or workstation gives the best experience possible. This is the target we've optimised for. On mobile devices, superterm can be used to check on an agent, and to unblock it - not for all day coding sessions, unless you have a Bluetooth keyboard on hand."
+            />
+            <FAQ
               q="How does it compare to multi-agent orchestrators?"
               a="superterm doesn't orchestrate agents -- it monitors them. Use whatever orchestrator or framework you want. superterm sits outside, watches your tmux sessions, and tells you which ones need attention. No vendor lock-in, no SDK, no ToS issues."
             />
