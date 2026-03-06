@@ -7,80 +7,82 @@ else
 fi
 
 IMAGE="ghcr.io/openfaasltd/superterm:latest"
-BIN_DIR=""
+BIN_DIR="/usr/local/bin"
 
-path_has_home_bin() {
-  case ":${PATH}:" in
-    *":${HOME}/bin:"*|*":~/bin:"*)
-      return 0
-      ;;
-  esac
-  return 1
+need_sudo() {
+  echo "This step needs write access to ${BIN_DIR}."
+  echo "Run with elevated permissions:"
+  echo "  curl -sLS https://superterm.dev/get.sh | sudo bash"
 }
 
-pick_bin_dir() {
-  if path_has_home_bin; then
-    echo "${HOME}/bin"
-  else
-    echo "/usr/local/bin"
-  fi
-}
-
-install_arkade() {
-  if command -v arkade >/dev/null 2>&1; then
-    return 0
-  fi
-
-  echo "arkade not found, installing..."
-  mkdir -p "${HOME}/bin"
-
-  local tmpdir
-  tmpdir="$(mktemp -d)"
-  (
-    cd "${tmpdir}"
-    curl -sLS https://get.arkade.dev | sh
-  )
-
-  if [ -f "${tmpdir}/arkade" ]; then
-    if ! mv "${tmpdir}/arkade" "${BIN_DIR}/arkade"; then
-      echo ""
-      echo "Failed to install arkade to ${BIN_DIR}."
-      if [ "${BIN_DIR}" = "/usr/local/bin" ] && [ "$(id -u)" -ne 0 ]; then
-        echo "Re-run with elevated permissions:"
-        echo "  curl -sLS https://superterm.dev/get.sh | sudo bash"
-      fi
-      rm -rf "${tmpdir}"
-      exit 1
-    fi
-    chmod +x "${BIN_DIR}/arkade"
-  fi
-  rm -rf "${tmpdir}"
-
-  export PATH="${BIN_DIR}:${HOME}/bin:$HOME/.arkade/bin:/usr/local/bin:$PATH"
-
-  if ! command -v arkade >/dev/null 2>&1; then
-    echo "Failed to install arkade"
+ensure_root() {
+  if [ "$(id -u)" -ne 0 ]; then
+    echo "This installer needs write access to ${BIN_DIR}."
+    need_sudo
     exit 1
   fi
 }
 
-BIN_DIR="$(pick_bin_dir)"
-install_arkade
-mkdir -p "${BIN_DIR}" 2>/dev/null || true
-export PATH="${BIN_DIR}:${HOME}/bin:$PATH"
-
-echo "Extracting ${IMAGE} to ${BIN_DIR}..."
-if ! arkade oci extract "${IMAGE}" --path "${BIN_DIR}"; then
-  echo ""
-  echo "Failed to extract superterm to ${BIN_DIR}."
-  if [ "${BIN_DIR}" = "/usr/local/bin" ] && [ "$(id -u)" -ne 0 ]; then
-    echo "Re-run with elevated permissions:"
-    echo "  curl -sLS https://superterm.dev/get.sh | sudo bash"
+install_arkade() {
+  if command -v /usr/local/bin/arkade >/dev/null 2>&1; then
+    return 0
   fi
+
+  echo "arkade not found, installing..."
+  if ! mkdir -p "${BIN_DIR}"; then
+    echo "Failed to create ${BIN_DIR}."
+    need_sudo
+    exit 1
+  fi
+
+  if ! curl -sLS https://get.arkade.dev | bash; then
+    echo "Failed to install arkade"
+    exit 1
+  fi
+
+  if ! command -v /usr/local/bin/arkade >/dev/null 2>&1; then
+    echo "/usr/local/bin/arkade missing after install."
+    exit 1
+  fi
+}
+
+install_superterm() {
+  workdir="$(mktemp -d)"
+
+  (
+    cd "${workdir}" && /usr/local/bin/arkade oci install "${IMAGE}" .
+  )
+
+  if [ ! -f "${workdir}/superterm" ]; then
+    echo "Failed to download superterm from OCI image."
+    rm -rf "${workdir}"
+    return 1
+  fi
+
+  if ! mv "${workdir}/superterm" "${BIN_DIR}/superterm"; then
+    echo "Failed to move superterm to ${BIN_DIR}."
+    need_sudo
+    rm -rf "${workdir}"
+    return 1
+  fi
+  chmod +x "${BIN_DIR}/superterm"
+  rm -rf "${workdir}"
+}
+
+ensure_root
+install_arkade
+mkdir -p "${BIN_DIR}" 2>/dev/null || {
+  echo "Failed to create ${BIN_DIR}."
+  need_sudo
+  exit 1
+}
+
+echo "Installing superterm from ${IMAGE}..."
+if ! install_superterm; then
+  echo ""
+  echo "Failed to install superterm to ${BIN_DIR}."
+  need_sudo
   exit 1
 fi
 
 echo "superterm installed to ${BIN_DIR}"
-if [ "${BIN_DIR}" = "${HOME}/bin" ] && ! echo ":$PATH:" | grep -q ":${HOME}/bin:"; then
-  echo "Add to PATH if needed: export PATH=\"${HOME}/bin:\$PATH\""
-fi

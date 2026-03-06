@@ -71,7 +71,7 @@ function TerminalScreenshot() {
 │ Welcome back Alex!              Sonnet 4.6 · Claude Max  │
 ╰──────────────────────────────────────────────────────────╯`}
               </pre>
-              <div className="text-text mb-1">❯ Add superterm as an alias to arkade oci install</div>
+              <div className="text-text mb-1">❯ Install superterm to your local PATH</div>
               <div className="text-accent/90 mb-1">● Searched for 1 pattern, read 1 file (ctrl+o to expand)</div>
               <div className="text-accent/90 mb-2">● Update(cmd/oci/install.go)</div>
               <div className="text-text-muted/90 mb-1">  ⎿ Added 2 lines</div>
@@ -79,7 +79,7 @@ function TerminalScreenshot() {
               <div className="text-accent/90 mb-1">87 + case &quot;superterm&quot;:</div>
               <div className="text-accent/90 mb-1">88 +   imageName = &quot;ghcr.io/openfaasltd/superterm&quot;</div>
               <div className="mt-2 text-text">
-                ● Done. superterm is now a shortcut alias, so <span className="text-accent/90">arkade oci install superterm</span> resolves correctly.
+                ● Done. superterm is now ready to run from <span className="text-accent/90">/usr/local/bin</span>.
               </div>
               <div className="mt-2 text-accent/90">❯</div>
             </div>
@@ -673,8 +673,31 @@ export default function Home() {
           <div className="space-y-10 mb-16">
             <Step
               n={1}
-              cmd="curl -sLS https://superterm.dev/get.sh | bash"
-              desc="Installs arkade and superterm to ~/bin. No sudo required."
+              cmd="curl -sLS https://superterm.dev/get.sh | sudo bash"
+              desc={
+                <>
+                  Installs superterm to{" "}
+                  <code className="font-mono bg-bg/40 px-1 py-0.5 rounded border border-border-bright/40">
+                    /usr/local/bin
+                  </code>
+                  . Sudo is needed to write binaries to{" "}
+                  <code className="font-mono bg-bg/40 px-1 py-0.5 rounded border border-border-bright/40">
+                    /usr/local/bin
+                  </code>
+                  .
+                  <span className="block mt-2">
+                    Want to inspect the installer first?{" "}
+                    <a
+                      href="https://superterm.dev/get.sh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent/90 underline underline-offset-2 hover:text-accent/80"
+                    >
+                      View the installer script.
+                    </a>
+                  </span>
+                </>
+              }
             />
             <Step
               n={2}
@@ -859,8 +882,8 @@ function Step({
   desc,
 }: {
   n: number;
-  cmd: string;
-  desc: string;
+  cmd: React.ReactNode;
+  desc: React.ReactNode;
 }) {
   return (
     <div className="flex gap-6 items-start">
