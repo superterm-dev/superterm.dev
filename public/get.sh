@@ -24,11 +24,7 @@ ensure_root() {
 }
 
 install_arkade() {
-  if command -v /usr/local/bin/arkade >/dev/null 2>&1; then
-    return 0
-  fi
-
-  echo "arkade not found, installing..."
+  echo "Installing arkade..."
   if ! mkdir -p "${BIN_DIR}"; then
     echo "Failed to create ${BIN_DIR}."
     need_sudo
