@@ -2,6 +2,7 @@ import Script from "next/script";
 import {
   LogoIcon,
   EyeIcon,
+  BookOpenIcon,
   SmartphoneIcon,
   ShieldIcon,
   BotIcon,
@@ -290,9 +291,9 @@ function DeviceStack() {
         <div className="h-1.5 bg-surface-2/30 border-x border-b border-border/30 rounded-b-xl mx-16" />
       </div>
 
-      {/* phone floating over bottom-right corner */}
-      <div className="absolute -bottom-6 -right-4 sm:-right-8">
-        <MobilePreview />
+      {/* logbook panel floating to the right */}
+      <div className="absolute -bottom-4 -right-4 sm:-right-56">
+        <LogbookPreview />
       </div>
     </div>
   );
@@ -313,54 +314,36 @@ function LaptopSession({ name, agent, status, cpu, spark }: { name: string; agen
   );
 }
 
-/* ─── mobile phone mockup ─── */
-function MobilePreview() {
+/* ─── logbook panel mockup ─── */
+function LogbookPreview() {
   return (
-    <div className="relative mx-auto w-[180px] sm:w-[200px]">
-      {/* phone frame */}
-      <div className="rounded-[1.8rem] border-[2px] border-border-bright/60 bg-surface p-1.5 shadow-2xl shadow-black/50 ring-1 ring-white/[0.03]">
-        {/* notch */}
-        <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-14 h-3.5 bg-bg rounded-full z-10" />
-        {/* screen */}
-        <div className="rounded-[1.5rem] bg-bg overflow-hidden">
-          {/* status bar */}
-          <div className="flex items-center justify-between px-4 pt-5 pb-1 text-[7px] text-text-muted/50">
-            <span>9:41</span>
-            <span className="font-medium">superterm</span>
-            <span>5G</span>
-          </div>
-          {/* session list on mobile */}
-          <div className="px-2 pb-1.5">
-            <div className="text-[7px] uppercase tracking-[0.15em] text-text-muted/40 mb-1.5 px-1 font-sans font-medium">
-              Sessions
-            </div>
-             <MobileSession name="auth-refactor" sub="claude code" state="attention" badge="Needs permission" />
-             <MobileSession name="payments-api" sub="codex" state="active" />
-             <MobileSession name="google-mcp" sub="gemini cli" state="idle" />
-          </div>
-          {/* expanded permission prompt */}
-          <div className="mx-2 mb-2 rounded-md border border-amber/20 bg-amber/5 p-2">
-            <div className="text-[8px] text-amber font-medium mb-1">
-              claude-api needs permission
-            </div>
-            <div className="text-[7px] text-text-muted/60 mb-1.5 leading-relaxed font-mono">
-              Tool: execute_bash<br />
-              <span className="text-text/60">rm -rf ./build &amp;&amp; npm run build</span>
-            </div>
-            <div className="flex gap-1.5">
-              <button className="flex-1 text-[7px] font-medium py-1 rounded bg-accent text-bg">
-                Allow
-              </button>
-              <button className="flex-1 text-[7px] font-medium py-1 rounded border border-border-bright text-text-muted">
-                Deny
-              </button>
-            </div>
-          </div>
-          {/* bottom bar */}
-          <div className="h-4 flex items-center justify-center">
-            <div className="w-16 h-0.5 rounded-full bg-border-bright/50" />
-          </div>
+    <div className="w-[220px] sm:w-[248px] rounded-xl border border-border-bright/50 bg-surface shadow-2xl shadow-black/50 ring-1 ring-white/[0.03] overflow-hidden font-mono text-[8px]">
+      {/* header */}
+      <div className="flex items-start justify-between px-3 pt-3 pb-2 border-b border-border/50">
+        <div>
+          <div className="text-[11px] font-bold text-text font-sans">Logbook</div>
+          <div className="text-[8px] text-text-muted/50 mt-0.5">auth-refactor</div>
         </div>
+        <div className="border border-border-bright/50 rounded px-1.5 py-0.5 text-[8px] text-text-muted/60 cursor-pointer hover:text-text-muted">
+          &gt;&gt;
+        </div>
+      </div>
+      {/* tabs */}
+      <div className="flex gap-1.5 px-2.5 pt-2 pb-1.5">
+        <span className="px-2 py-0.5 rounded-md bg-accent text-bg font-sans font-medium text-[8px]">Notes</span>
+        <span className="px-2 py-0.5 rounded-md text-text-muted/60 font-sans text-[8px]">Timeline</span>
+        <span className="px-2 py-0.5 rounded-md text-text-muted/60 font-sans text-[8px]">Prompts</span>
+      </div>
+      {/* notes content */}
+      <div className="mx-2 mb-2.5 rounded-md bg-bg/70 border border-border/40 px-2.5 py-2 leading-relaxed text-text-muted/70">
+        <div className="text-text/80 mb-1"># Goal</div>
+        <div className="mb-2">Refactor auth flow to use JWT</div>
+        <div className="text-text/80 mb-1"># Next steps</div>
+        <div className="text-accent/80">* Update middleware</div>
+        <div className="text-accent/80">* Write integration tests</div>
+        <div className="text-accent/80">* Review token expiry logic</div>
+        <div className="mt-2 text-text-muted/40">─────────────────</div>
+        <div className="mt-1.5 text-text-muted/50">Last updated 4m ago</div>
       </div>
     </div>
   );
@@ -435,6 +418,9 @@ export default function Home() {
             <a href="#features" className="hidden sm:inline hover:text-text transition-colors">
               Features
             </a>
+            <a href="#install" className="hidden sm:inline hover:text-text transition-colors">
+              Install
+            </a>
             <a href="#pricing" className="hidden sm:inline hover:text-text transition-colors">
               Pricing
             </a>
@@ -459,9 +445,9 @@ export default function Home() {
             <span className="text-accent">the agentic era.</span>
           </h1>
           <p className="text-[17px] sm:text-lg text-text/60 max-w-xl mx-auto mb-10 leading-relaxed font-normal">
-            A thin client for CLI-based coding agents.
+            Everything your agents are doing, on one screen.
             <br className="hidden sm:block" />{" "}
-            Run Claude Code, Codex, Gemini CLI, or
+            Claude Code, Codex, Gemini CLI, or
             anything else&nbsp;&mdash; all at once. Know which one needs you.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
@@ -602,12 +588,12 @@ export default function Home() {
             <FeatureCard
               icon={<EyeIcon className="w-5 h-5" />}
               title="Attention system"
-              desc={
-                <>
-                  Sparklines, status orbs, and bell detection across every session. Instantly see which agent finished, errored, or is waiting for you.
-                  <span className="block mt-3">Use Logbook to keep goals and task lists tied to each session.</span>
-                </>
-              }
+              desc="Sparklines, status orbs, and bell detection across every session. Instantly see which agent finished, errored, or is waiting for you."
+            />
+            <FeatureCard
+              icon={<BookOpenIcon className="w-5 h-5" />}
+              title="Logbook"
+              desc="A persistent side pane anchored to each session. Notes keeps your goals and observations in context. Timeline shows what happened while you were away. Prompts saves reusable instructions. Context-switch across 10 agents without losing the thread."
             />
             <FeatureCard
               icon={<BotIcon className="w-5 h-5" />}
@@ -635,11 +621,6 @@ export default function Home() {
               desc="One-click mask for screen sharing, screenshots, and social sharing. Share your workflow without leaking API keys or credentials."
             />
             <FeatureCard
-              icon={<MonitorIcon className="w-5 h-5" />}
-              title="Runs everywhere"
-              desc="The daemon runs on Linux, macOS, and WSL2. The client runs anywhere a browser does. Install as a PWA for a native feel and power shortcuts — Ctrl+W deletes a word instead of closing your tab."
-            />
-            <FeatureCard
               icon={<KeyboardIcon className="w-5 h-5" />}
               title="Keyboard-driven"
               desc={
@@ -665,7 +646,7 @@ export default function Home() {
       </section>
 
       {/* ─── how it works ─── */}
-      <section className="py-28 px-6 border-t border-border/30">
+      <section id="install" className="py-28 px-6 border-t border-border/30">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center mb-20">
             Managing agents in 30 seconds.
@@ -773,7 +754,7 @@ export default function Home() {
             />
             <FAQ
               q="Why not just use Ghostty, Kitty, or Alacritty?"
-              a="superterm isn't a terminal emulator. It's the layer above. A session-aware dashboard for your tmux sessions. Keep using Ghostty locally and check on your agents from your phone with superterm."
+              a="superterm isn't a terminal emulator. It's the command center above your terminals. A session-aware dashboard for your tmux sessions. Keep using Ghostty locally and check on your agents from your phone with superterm."
             />
             <FAQ
               q="How can I stop Control + W from closing my browser?"
@@ -781,15 +762,15 @@ export default function Home() {
             />
             <FAQ
               q="What's the experience like on my iPhone or tablet?"
-              a="Your laptop or workstation gives the best experience possible. This is the target we've optimised for. On mobile devices, superterm can be used to check on an agent, and to unblock it - not for all day coding sessions, unless you have a Bluetooth keyboard on hand."
+              a="Built for your laptop or workstation — that's where superterm shines. On mobile and tablet, it's purpose-built for checking in on agents and unblocking them, not full development sessions."
             />
             <FAQ
               q="How does it compare to multi-agent orchestrators?"
-              a="superterm doesn't orchestrate agents -- it monitors them. Use whatever orchestrator or framework you want. superterm sits outside, watches your tmux sessions, and tells you which ones need attention. No vendor lock-in, no SDK, no ToS issues."
+              a="superterm doesn't orchestrate agents — it monitors them. Use whatever orchestrator or framework you want. superterm sits outside, watches your tmux sessions, and tells you which ones need attention. No vendor lock-in, no SDK, no ToS issues."
             />
             <FAQ
               q="Can I use this with Claude Max / Pro plans?"
-              a="Yes. superterm never touches the agent process. It reads terminal output the same way you would by looking at your screen. No API calls, no wrappers, no ToS violations. It's just a dashboard."
+              a="Yes. superterm reads terminal output the same way you would by looking at your screen. Unlike tools that integrate with Claude's Agent SDK, there's no API coupling, no wrappers, and no ToS exposure."
             />
             <FAQ
               q="How does remote access work?"
@@ -805,11 +786,11 @@ export default function Home() {
             />
             <FAQ
               q="What about privacy / mask mode?"
-              a="One click hides sensitive content across all sessions. Screen sharing, screenshots, social posts -- share your workflow without leaking API keys or credentials."
+              a="One click hides sensitive content across all sessions. Screen sharing, screenshots, streaming — share your workflow without leaking API keys or credentials."
             />
             <FAQ
               q="What platforms are supported?"
-              a="Linux, macOS, and Windows via WSL. Single binary, no dependencies on Linux. On macOS: brew install tmux."
+              a="The daemon runs on Linux, macOS, and Windows via WSL2. The client runs in any browser — install as a PWA for a native feel and full keyboard shortcuts (Ctrl+W deletes a word instead of closing your tab). Single binary, no dependencies on Linux. On macOS: brew install tmux."
             />
           </div>
         </div>
