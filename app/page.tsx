@@ -641,7 +641,6 @@ export default function Home() {
               }
             />
           </div>
-          <NotifyCutout />
         </div>
       </section>
 
@@ -699,6 +698,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── automate attention ─── */}
+      <section className="py-28 px-6 border-t border-border/30">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center mb-4">
+            Automate and integrate attention.
+          </h2>
+          <p className="text-center text-text/60 text-[15px] mb-16 max-w-xl mx-auto">
+            Wire your agents and scripts directly into superterm so the right sessions surface themselves — no polling, no babysitting.
+          </p>
+          <div className="space-y-10">
+            <Step
+              n={1}
+              cmd="superterm agent-setup install"
+              desc="Configure all your agent CLIs — Claude Code, Codex, Gemini CLI and more — to feed status and attention signals directly into superterm."
+            />
+            <Step
+              n={2}
+              cmd="superterm notify agent-1"
+              desc="Ring the bell on a session — marks it as needing your attention from any script or agent hook."
+            />
+            <Step
+              n={3}
+              cmd={<>superterm notify agent-1 --title &quot;I need to run docker push&quot;</>}
+              desc="Send a message with the signal — surfaces a status update or permission request directly in your dashboard."
+            />
+          </div>
+        </div>
+      </section>
+
       {/* ─── pricing ─── */}
       <section id="pricing" className="py-28 px-6 border-t border-border/30">
         <div className="max-w-lg mx-auto text-center">
@@ -749,6 +777,10 @@ export default function Home() {
           </h2>
           <div className="space-y-3">
             <FAQ
+              q="Is the license per machine?"
+              a="No — it's per person. One subscription covers all your personal devices. Run superterm on your workstation, laptop, home server, wherever you work."
+            />
+            <FAQ
               q="Isn't this just tmux?"
               a="tmux helps you run sessions. superterm helps you stay on top of them. Attention system: quickly see what needs you now. Logbook: keep goals and task lists per session so context stays clear."
             />
@@ -782,7 +814,7 @@ export default function Home() {
             />
             <FAQ
               q="What does the attention system do?"
-              a="It watches for bell characters, output bursts, and idle periods across all sessions. Each one gets a sparkline and status orb so you can see at a glance which agents finished, errored, or need input."
+              a="It watches for bell characters, output bursts, and idle periods across all sessions. Each one gets a sparkline and status orb so you can see at a glance which agents finished, errored, or need input. Claude Code integrates via native hooks, opencode via a plugin, and any other agent or script can use AGENTS.md instructions or superterm notify directly."
             />
             <FAQ
               q="What about privacy / mask mode?"
@@ -895,11 +927,10 @@ function NotifyCutout() {
     <div className="mt-8 rounded-xl border border-border-bright/60 bg-surface/60 p-5">
       <div className="font-mono text-[12px] text-text-muted/70 mb-3">Signal what matters</div>
       <div className="rounded-lg border border-border/70 bg-bg/40 p-4 font-mono text-[12px] leading-relaxed overflow-x-auto">
-        <div className="text-accent/90">$ superterm notify --session agent-1</div>
+        <div className="text-accent/90">$ superterm notify agent-1</div>
         <div className="text-text-muted">bell only: mark that session as needing attention</div>
         <div className="mt-2 text-accent/90">
-          $ superterm notify --session agent-1 --title "Claude Code" \<br />
-          &nbsp;&nbsp;--body "Claude wants to run tmux list-sessions"
+          $ superterm notify agent-1 --title &quot;Claude wants to run tmux list-sessions&quot;
         </div>
         <div className="text-text-muted">send a status update or request into your dashboard</div>
       </div>
