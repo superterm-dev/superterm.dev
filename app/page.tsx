@@ -467,7 +467,7 @@ export default function Home() {
             <FeatureCard
               icon={<MonitorIcon className="w-5 h-5" />}
               title="Feels native, runs in the browser"
-              desc="Install as a PWA — opens from your dock or home screen, no browser chrome, full keyboard shortcuts. Ctrl+W edits text instead of closing a tab. Daemon runs on Linux, macOS, and WSL2. Single binary, no dependencies."
+              desc="Install as a PWA — opens from your dock or home screen, no browser chrome, full keyboard shortcuts. Ctrl+W edits text instead of closing a tab. Daemon runs on Linux, macOS, and WSL2. Restarting or updating superterm never drops a session — tmux runs independently and keeps all your work intact."
             />
           </div>
         </div>
@@ -507,6 +507,62 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ─── linux powerhouse callout ─── */}
+      <section className="py-20 px-6 border-t border-border/30">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center mb-4">
+            Your agents don&apos;t need you to buy the latest MacBook.
+          </h2>
+          <p className="text-center text-text/60 text-[15px] max-w-lg mx-auto mb-12 leading-relaxed">
+            Save thousands of dollars and keep what you&apos;ve got. Superterm turns headless Linux into an absolute powerhouse.
+          </p>
+          <div className="flex flex-col sm:flex-row items-stretch gap-3">
+            {/* linux options */}
+            <div className="flex-1 flex flex-col gap-3">
+              <div className="rounded-xl border border-accent/20 bg-accent/5 p-5 flex items-start gap-4">
+                <span className="text-2xl leading-none">🖥️</span>
+                <div>
+                  <div className="font-semibold text-text text-[15px]">from $300</div>
+                  <div className="text-[13px] text-text-muted mt-0.5">Mini PC · 32 GB RAM · silent, runs 24/7</div>
+                </div>
+              </div>
+              <div className="rounded-xl border border-accent/20 bg-accent/5 p-5 flex items-start gap-4">
+                <span className="text-2xl leading-none">⚡</span>
+                <div>
+                  <div className="font-semibold text-text text-[15px]">from €37<span className="text-text-muted font-normal">/mo</span></div>
+                  <div className="text-[13px] text-text-muted mt-0.5">Hetzner AX · AMD Ryzen · 64 GB RAM · NVMe</div>
+                </div>
+              </div>
+            </div>
+
+            {/* vs divider */}
+            <div className="flex sm:flex-col items-center justify-center gap-2 sm:gap-3 px-2">
+              <div className="h-px sm:h-full sm:w-px w-full bg-border/50 flex-1" />
+              <span className="text-[11px] uppercase tracking-widest text-text-muted/40 font-medium">vs</span>
+              <div className="h-px sm:h-full sm:w-px w-full bg-border/50 flex-1" />
+            </div>
+
+            {/* mac options */}
+            <div className="flex-1 flex flex-col gap-3">
+              <div className="rounded-xl border border-border/60 bg-surface/30 p-5 flex items-start gap-4">
+                <span className="text-2xl leading-none">💻</span>
+                <div>
+                  <div className="font-semibold text-text text-[15px]">$1,699</div>
+                  <div className="text-[13px] text-text-muted mt-0.5">MacBook Pro M5 14″ · base</div>
+                </div>
+              </div>
+              <div className="rounded-xl border border-border/60 bg-surface/30 p-5 flex items-start gap-4">
+                <span className="text-2xl leading-none">💻</span>
+                <div>
+                  <div className="font-semibold text-text text-[15px]">$3,899<span className="text-text-muted font-normal">+</span></div>
+                  <div className="text-[13px] text-text-muted mt-0.5">MacBook Pro M5 Max 16″ · maxed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ─── pricing ─── */}
       <section id="pricing" className="py-28 px-6 border-t border-border/30">
