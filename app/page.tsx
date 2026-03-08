@@ -235,35 +235,36 @@ function Sparkline({ value }: { value: number }) {
 /* ─── logbook panel mockup ─── */
 function LogbookPreview() {
   return (
-    <div className="w-[220px] sm:w-[248px] rounded-xl border border-border-bright/50 bg-surface shadow-2xl shadow-black/50 ring-1 ring-white/[0.03] overflow-hidden font-mono text-[8px]">
+    <div className="w-full max-w-[420px] rounded-xl border border-border-bright/50 bg-surface shadow-2xl shadow-black/50 ring-1 ring-white/[0.03] overflow-hidden">
       {/* header */}
-      <div className="flex items-start justify-between px-3 pt-3 pb-2 border-b border-border/50">
+      <div className="flex items-center justify-between px-4 pt-3.5 pb-3 border-b border-border/50">
         <div>
-          <div className="text-[11px] font-bold text-text font-sans">Logbook</div>
-          <div className="text-[8px] text-text-muted/50 mt-0.5">auth-refactor</div>
+          <div className="text-[13px] font-semibold text-text font-sans">Logbook</div>
+          <div className="text-[10px] text-text-muted/50 mt-0.5 font-mono">auth-refactor</div>
         </div>
-        <div className="border border-border-bright/50 rounded px-1.5 py-0.5 text-[8px] text-text-muted/60 cursor-pointer hover:text-text-muted">
+        <div className="border border-border-bright/50 rounded px-2 py-0.5 text-[10px] text-text-muted/50 font-mono">
           &gt;&gt;
         </div>
       </div>
       {/* tabs */}
-      <div className="flex gap-1.5 px-2.5 pt-2 pb-1.5">
-        <span className="px-2 py-0.5 rounded-md bg-accent text-bg font-sans font-medium text-[8px]">Notes</span>
-        <span className="px-2 py-0.5 rounded-md text-text-muted/60 font-sans text-[8px]">Timeline</span>
-        <span className="px-2 py-0.5 rounded-md text-text-muted/60 font-sans text-[8px]">Prompts</span>
+      <div className="flex gap-1.5 px-3.5 pt-2.5 pb-2">
+        <span className="px-2.5 py-1 rounded-md bg-accent text-bg font-sans font-medium text-[11px]">Notes</span>
+        <span className="px-2.5 py-1 rounded-md text-text-muted/50 font-sans text-[11px] hover:text-text-muted">Timeline</span>
+        <span className="px-2.5 py-1 rounded-md text-text-muted/50 font-sans text-[11px] hover:text-text-muted">Prompts</span>
       </div>
       {/* notes content */}
-      <div className="mx-2 mb-2.5 rounded-md bg-bg/70 border border-border/40 px-2.5 py-2 leading-relaxed text-text-muted/70">
-        <div className="text-text-muted/40 mb-1">Now</div>
-        <div className="text-accent/80 mb-0.5">[x] Fix arrow keys in notes modal</div>
-        <div className="text-accent/80 mb-2">[ ] Write integration tests</div>
-        <div className="text-text-muted/40 mb-1">This week</div>
-        <div className="mb-0.5">[ ] Add streaming output to diff view</div>
-        <div className="mb-2">[ ] Review token expiry logic</div>
-        <div className="text-text-muted/40 mb-1">Horizon</div>
-        <div className="text-text-muted/50">[ ] Ship v2 auth API</div>
-        <div className="mt-2 text-text-muted/40">─────────────────</div>
-        <div className="mt-1.5 text-text-muted/50">Last updated 4m ago</div>
+      <div className="mx-3 mb-3.5 rounded-lg bg-bg/70 border border-border/40 px-3.5 py-3 font-mono text-[12px] leading-relaxed text-text-muted/80 space-y-0.5">
+        <div className="text-[10px] uppercase tracking-widest text-text-muted/35 mb-1.5">Now</div>
+        <div className="text-accent/75"><span className="text-text-muted/40 mr-1.5">[x]</span>Review PR comments from Sarah</div>
+        <div><span className="text-text-muted/40 mr-1.5">[ ]</span>Write auth integration tests</div>
+        <div className="text-[10px] uppercase tracking-widest text-text-muted/35 mt-3 mb-1.5">This week</div>
+        <div><span className="text-text-muted/40 mr-1.5">[ ]</span>Ship JWT middleware refactor</div>
+        <div><span className="text-text-muted/40 mr-1.5">[ ]</span>Migrate legacy token validation</div>
+        <div><span className="text-text-muted/40 mr-1.5">[ ]</span>Load test the new auth endpoints</div>
+        <div className="text-[10px] uppercase tracking-widest text-text-muted/35 mt-3 mb-1.5">Horizon</div>
+        <div className="text-text-muted/50"><span className="text-text-muted/30 mr-1.5">[ ]</span>Deprecate v1 auth API</div>
+        <div className="text-text-muted/50"><span className="text-text-muted/30 mr-1.5">[ ]</span>Add SSO support (Okta)</div>
+        <div className="mt-3 pt-2.5 border-t border-border/30 text-[10px] text-text-muted/35">Updated 6m ago</div>
       </div>
     </div>
   );
@@ -431,11 +432,6 @@ export default function Home() {
               }
             />
             <FeatureCard
-              icon={<BookOpenIcon className="w-5 h-5" />}
-              title="Logbook"
-              desc="Your agents have context. Do you? Logbook anchors goals to each session — Now, This Week, Horizon — so you never lose the thread when switching across agents. Timeline shows what happened while you were away."
-            />
-            <FeatureCard
               icon={<BotIcon className="w-5 h-5" />}
               title="Agent agnostic"
               desc={
@@ -470,6 +466,41 @@ export default function Home() {
               title="A clipboard that actually works"
               desc={<>Switched machine or agent? Copy/paste is broken again. Superterm is a browser. Select text, copy, paste. Every machine. Every time.<span className="block mt-2">Pause the screen and scroll back through any agent&apos;s output using tmux&apos;s copy mode.</span></>}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── logbook spotlight ─── */}
+      <section className="py-28 px-6 border-t border-border/30">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <div className="flex items-center gap-2.5 mb-4">
+              <BookOpenIcon className="w-5 h-5 text-accent/70" />
+              <span className="text-sm font-semibold text-text">Logbook</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-5">
+              Your agents have context.<br />Do you?
+            </h2>
+            <p className="text-text/60 leading-relaxed text-[15px] mb-6">
+              Logbook anchors goals to each session — Now, This Week, Horizon — so you never lose the thread when switching across agents.
+            </p>
+            <ul className="space-y-3 text-[14px] text-text-muted">
+              <li className="flex items-start gap-3">
+                <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                <span>Notes keep your intent visible while the agent works</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                <span>Timeline shows what happened while you were away</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                <span>Prompts saves reusable instructions per session</span>
+              </li>
+            </ul>
+          </div>
+          <div className="flex justify-center md:justify-end">
+            <LogbookPreview />
           </div>
         </div>
       </section>
