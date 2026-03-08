@@ -7,7 +7,6 @@ import {
   ShieldIcon,
   BotIcon,
   MonitorIcon,
-  KeyboardIcon,
   CheckIcon,
   ChevronDownIcon,
   ArrowRightIcon,
@@ -207,112 +206,6 @@ function Sparkline({ value }: { value: number }) {
   );
 }
 
-function TerminalLine({
-  prompt,
-  cmd,
-  cursor,
-}: {
-  prompt: string;
-  cmd: string;
-  cursor?: boolean;
-}) {
-  return (
-    <div className="flex gap-2 mb-0.5">
-      <span className="text-accent select-none">{prompt}</span>
-      <span className="text-text">
-        {cmd}
-        {cursor && (
-          <span className="inline-block w-2 h-4 bg-accent/70 animate-pulse ml-0.5 align-text-bottom" />
-        )}
-      </span>
-    </div>
-  );
-}
-
-function TerminalOutput({ text }: { text: string }) {
-  return <div className="text-text-muted/60 mb-0.5">{text}</div>;
-}
-
-function StatusRow({
-  name,
-  cpu,
-  attention,
-  color,
-}: {
-  name: string;
-  cpu: string;
-  attention: string;
-  color: string;
-}) {
-  return (
-    <div className="flex gap-6">
-      <span className="w-28 text-text">{name}</span>
-      <span className="w-16 text-right text-text-muted">{cpu}</span>
-      <span className={`w-20 text-right ${color}`}>{attention}</span>
-    </div>
-  );
-}
-
-/* ─── device stack: laptop + phone ─── */
-function DeviceStack() {
-  return (
-    <div className="relative">
-      {/* laptop */}
-      <div className="w-[380px] sm:w-[440px]">
-        {/* screen */}
-        <div className="rounded-t-xl border border-border-bright/60 border-b-0 bg-surface overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.03]">
-          {/* browser bar */}
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-surface-2/80 border-b border-border">
-            <div className="flex gap-1">
-              <span className="w-2 h-2 rounded-full bg-red/70" />
-              <span className="w-2 h-2 rounded-full bg-amber/70" />
-              <span className="w-2 h-2 rounded-full bg-accent/70" />
-            </div>
-            <div className="flex-1 mx-2 px-2 py-0.5 rounded bg-bg/50 text-[8px] text-text-muted/40 font-mono truncate">
-              https://superterm.tail1234.ts.net
-            </div>
-          </div>
-          {/* dashboard content */}
-          <div className="p-3 min-h-[200px] sm:min-h-[240px]">
-            <div className="text-[8px] uppercase tracking-[0.15em] text-text-muted/40 mb-2 font-sans font-medium">
-              Sessions
-            </div>
-            <div className="space-y-1">
-              <LaptopSession name="auth-refactor" agent="claude code" status="active" cpu="23%" spark={[3,5,7,6,4]} />
-              <LaptopSession name="payments-api" agent="codex" status="waiting" cpu="2%" spark={[1,1,2,1,0]} />
-              <LaptopSession name="db-migrate" agent="aider" status="active" cpu="41%" spark={[2,4,6,8,5]} />
-              <LaptopSession name="google-mcp" agent="gemini cli" status="idle" cpu="0%" spark={[1,1,0,0,0]} />
-              <LaptopSession name="qwen3-finetune" agent="llama.cpp" status="active" cpu="89%" spark={[6,7,8,7,8]} />
-            </div>
-          </div>
-        </div>
-        {/* laptop base */}
-        <div className="h-3 bg-surface-2/60 border border-border-bright/40 rounded-b-lg mx-6" />
-        <div className="h-1.5 bg-surface-2/30 border-x border-b border-border/30 rounded-b-xl mx-16" />
-      </div>
-
-      {/* logbook panel floating to the right */}
-      <div className="absolute -bottom-4 -right-4 sm:-right-56">
-        <LogbookPreview />
-      </div>
-    </div>
-  );
-}
-
-function LaptopSession({ name, agent, status, cpu, spark }: { name: string; agent: string; status: "active" | "waiting" | "idle"; cpu: string; spark: number[] }) {
-  const dot = status === "active" ? "bg-accent" : status === "waiting" ? "bg-amber" : "bg-border-bright";
-  const blocks = ["\u2581", "\u2582", "\u2583", "\u2584", "\u2585", "\u2586", "\u2587", "\u2588"];
-  const sparkStr = spark.map(v => blocks[Math.min(v, 7)]).join("");
-  return (
-    <div className="flex items-center gap-2 py-1 px-1.5 rounded text-[9px] font-mono hover:bg-surface-2/30">
-      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${dot}`} />
-      <span className="text-text w-24 truncate">{name}</span>
-      <span className="text-text-muted/40 w-16 truncate">{agent}</span>
-      <span className="text-text-muted/50 w-8 text-right">{cpu}</span>
-      <span className="text-accent/50 ml-auto tracking-tight">{sparkStr}</span>
-    </div>
-  );
-}
 
 /* ─── logbook panel mockup ─── */
 function LogbookPreview() {
@@ -351,38 +244,6 @@ function LogbookPreview() {
   );
 }
 
-function MobileSession({
-  name,
-  sub,
-  state,
-  badge,
-}: {
-  name: string;
-  sub?: string;
-  state: "attention" | "active" | "idle";
-  badge?: string;
-}) {
-  const dot =
-    state === "attention"
-      ? "bg-amber"
-      : state === "active"
-        ? "bg-accent"
-        : "bg-border-bright";
-  return (
-    <div className="flex items-center gap-2 py-2 px-2 rounded-md text-[11px] hover:bg-surface-2/30">
-      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${dot}`} />
-      <div className="truncate flex-1 min-w-0">
-        <div className="text-text truncate">{name}</div>
-        {sub && <div className="text-[8px] text-text-muted/40 truncate">{sub}</div>}
-      </div>
-      {badge && (
-        <span className="text-[8px] text-amber bg-amber/10 border border-amber/15 px-1.5 py-0.5 rounded-full whitespace-nowrap">
-          {badge}
-        </span>
-      )}
-    </div>
-  );
-}
 
 /* ─── FAQ ─── */
 function FAQ({
@@ -535,7 +396,12 @@ export default function Home() {
             <FeatureCard
               icon={<EyeIcon className="w-5 h-5" />}
               title="Attention system"
-              desc="Sparklines, status orbs, and bell detection across every session. Instantly see which agent finished, errored, or is waiting for you."
+              desc={
+                <>
+                  Sparklines, status orbs, and bell detection across every session. Instantly see which agent finished, errored, or is waiting for you.
+                  <span className="block mt-2">Run <code className="font-mono text-accent/80 text-[11px]">superterm agent-setup</code> for native hooks with Claude Code, Codex, Amp, and OpenCode — no manual config.</span>
+                </>
+              }
             />
             <FeatureCard
               icon={<BookOpenIcon className="w-5 h-5" />}
@@ -560,7 +426,12 @@ export default function Home() {
             <FeatureCard
               icon={<SmartphoneIcon className="w-5 h-5" />}
               title="Check from anywhere"
-              desc="Use phone or tablet to check in, confirm prompts, and unblock agents while away from your desk. For full coding on a tablet or phone, you'll need a bluetooth keyboard."
+              desc={
+                <>
+                  Mobile is purpose-built for three things: unblock an agent waiting on permission, send a follow-up to keep it moving, or check progress at a glance.
+                  <span className="block mt-2 text-text-muted/50">Not a full terminal — scrollback, text selection, and heavy editing belong on your laptop.</span>
+                </>
+              }
             />
             <FeatureCard
               icon={<ShieldIcon className="w-5 h-5" />}
@@ -568,24 +439,9 @@ export default function Home() {
               desc="One-click mask for screen sharing, screenshots, and social sharing. Share your workflow without leaking API keys or credentials."
             />
             <FeatureCard
-              icon={<KeyboardIcon className="w-5 h-5" />}
-              title="Keyboard-driven"
-              desc={
-                <>
-                  Learn tmux with a visual guide and build confidence fast.
-                  <span className="block mt-2">
-                    Use{" "}
-                  <code className="inline-flex items-center px-1.5 py-0.5 rounded border border-border-bright/60 bg-bg/50 font-mono text-[12px] text-accent/90">
-                    Control + P
-                  </code>{" "}
-                  for navigation, then type{" "}
-                  <code className="inline-flex items-center px-1.5 py-0.5 rounded border border-border-bright/60 bg-bg/50 font-mono text-[12px] text-accent/90">
-                    &gt;
-                  </code>{" "}
-                  to run commands.
-                  </span>
-                </>
-              }
+              icon={<MonitorIcon className="w-5 h-5" />}
+              title="Feels native, runs in the browser"
+              desc="Install as a PWA — opens from your dock or home screen, no browser chrome, full keyboard shortcuts. Ctrl+W edits text instead of closing a tab. Daemon runs on Linux, macOS, and WSL2. Single binary, no dependencies."
             />
           </div>
         </div>
@@ -730,12 +586,19 @@ export default function Home() {
               a="superterm isn't a terminal emulator. It's the command center above your terminals. A session-aware dashboard for your tmux sessions. Keep using Ghostty locally and check on your agents from your phone with superterm."
             />
             <FAQ
-              q="How can I stop Control + W from closing my browser?"
-              a="On macOS, Control + W does not close the browser tab; Command + W does. On Linux, install superterm as a PWA, then Control + W works for terminal editing without closing your browser tab."
-            />
-            <FAQ
-              q="What's the experience like on my iPhone or tablet?"
-              a="Built for your laptop or workstation — that's where superterm shines. On mobile and tablet, it's purpose-built for checking in on agents and unblocking them, not full development sessions."
+              q="What can I actually do on my phone or tablet?"
+              a={
+                <>
+                  <p className="mb-3">Mobile is designed for three specific jobs:</p>
+                  <ul className="space-y-1.5 mb-4 list-none">
+                    <li>✅ Unblock an agent waiting on a permission prompt</li>
+                    <li>✅ Send a follow-up message to keep it moving</li>
+                    <li>✅ Check progress across all your sessions at a glance</li>
+                  </ul>
+                  <p className="mb-2">It is not a full terminal. Scrollback, text selection, and editing are laptop territory — trying to use it that way on a phone will frustrate you.</p>
+                  <p>Think of it like checking Slack on your phone while your build runs on your workstation.</p>
+                </>
+              }
             />
             <FAQ
               q="How does it compare to multi-agent orchestrators?"
@@ -768,7 +631,12 @@ export default function Home() {
             />
             <FAQ
               q="What platforms are supported?"
-              a="The daemon runs on Linux, macOS, and Windows via WSL2. The client runs in any browser — install as a PWA for a native feel and full keyboard shortcuts (Ctrl+W deletes a word instead of closing your tab). Single binary, no dependencies on Linux. On macOS: brew install tmux."
+              a={
+                <>
+                  <p className="mb-2">Daemon: Linux, macOS, Windows (WSL2). Single binary, no dependencies on Linux. On macOS: <code className="font-mono text-accent/80">brew install tmux</code>.</p>
+                  <p>Client: any browser. Install as a PWA for a near-native feel — opens like an app, full keyboard shortcuts work as expected (Ctrl+W deletes a word, not your tab).</p>
+                </>
+              }
             />
           </div>
         </div>
