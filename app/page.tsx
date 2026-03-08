@@ -47,8 +47,8 @@ function TerminalScreenshot() {
             </div>
           </div>
           <div className="flex-1">
-            <SessionRow name="auth-refactor" sub="claude code" status="active" attention={85} />
-            <SessionRow name="payments-api" sub="codex" status="waiting" attention={60} />
+            <SessionRow name="auth-refactor" sub="claude code" status="waiting" attention={85} notify="needs your permission" />
+            <SessionRow name="payments-api" sub="codex" status="active" attention={60} />
             <SessionRow name="db-migrate" sub="aider" status="idle" attention={12} />
             <SessionRow name="google-mcp" sub="gemini cli" status="active" attention={45} />
             <SessionRow name="qwen3-finetune" sub="llama.cpp" status="active" attention={30} />
@@ -146,16 +146,37 @@ function TerminalScreenshot() {
   );
 }
 
+function AgentIcon({ agent }: { agent: string }) {
+  const cls = "w-2.5 h-2.5 flex-shrink-0 opacity-60";
+  const a = agent.toLowerCase();
+  if (a.includes("claude"))
+    return <svg viewBox="0 0 24 24" fill="currentColor" className={cls}><path d="M12 2C12 2 14.5 8.5 16 10C17.5 8.5 22 6 22 6C22 6 19.5 10.5 18 12C19.5 13.5 22 18 22 18C22 18 17.5 15.5 16 14C14.5 15.5 12 22 12 22C12 22 9.5 15.5 8 14C6.5 15.5 2 18 2 18C2 18 4.5 13.5 6 12C4.5 10.5 2 6 2 6C2 6 6.5 8.5 8 10C9.5 8.5 12 2 12 2Z"/></svg>;
+  if (a.includes("codex"))
+    return <svg viewBox="0 0 24 24" fill="currentColor" className={cls}><path d="M12 2L21.5 7.5V16.5L12 22L2.5 16.5V7.5L12 2ZM12 4.5L5 8.5V15.5L12 19.5L19 15.5V8.5L12 4.5Z"/></svg>;
+  if (a.includes("gemini"))
+    return <svg viewBox="0 0 24 24" fill="currentColor" className={cls}><path d="M12 2L17 12L12 22L7 12L12 2Z"/></svg>;
+  if (a.includes("aider"))
+    return <svg viewBox="0 0 24 24" fill="currentColor" className={cls}><path d="M20 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H8L12 22L16 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"/></svg>;
+  if (a.includes("amp"))
+    return <svg viewBox="0 0 24 24" fill="currentColor" className={cls}><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>;
+  if (a.includes("opencode"))
+    return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={cls}><polyline points="8 18 2 12 8 6"/><polyline points="16 6 22 12 16 18"/></svg>;
+  // shell / misc fallback
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={cls}><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>;
+}
+
 function SessionRow({
   name,
   sub,
   status,
   attention,
+  notify,
 }: {
   name: string;
   sub?: string;
   status: "active" | "waiting" | "idle" | "done";
   attention: number;
+  notify?: string;
 }) {
   const dot =
     status === "active"
@@ -166,14 +187,19 @@ function SessionRow({
           ? "bg-text-muted"
           : "bg-border-bright";
   return (
-    <div className="flex items-center gap-2 py-1.5 px-2 rounded text-xs hover:bg-surface-2 cursor-default group font-mono">
-      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${dot}`} />
-      <div className="truncate flex-1 min-w-0">
-        <div className="text-text truncate text-[11px]">{name}</div>
-        {sub && <div className="text-[9px] text-text-muted/40 truncate">{sub}</div>}
+    <div className="py-1.5 px-2 rounded hover:bg-surface-2 cursor-default font-mono">
+      <div className="flex items-center gap-2">
+        <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${dot}`} />
+        <div className="truncate flex-1 min-w-0">
+          <div className="flex items-center gap-1 text-text truncate text-[11px]">
+            {sub && <AgentIcon agent={sub} />}
+            <span className="truncate">{name}</span>
+          </div>
+        </div>
+        {attention > 0 && <Sparkline value={attention} />}
       </div>
-      {attention > 0 && (
-        <Sparkline value={attention} />
+      {notify && (
+        <div className="ml-3.5 mt-0.5 text-[9px] text-amber truncate">🖐️ {notify}</div>
       )}
     </div>
   );
@@ -390,7 +416,7 @@ export default function Home() {
       <section id="features" className="py-28 px-6 border-t border-border/30">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center mb-14">
-            Everything you need.
+            One dashboard. Every agent.
           </h2>
           <div className="grid md:grid-cols-2 gap-5">
             <FeatureCard
@@ -459,26 +485,15 @@ export default function Home() {
               cmd="curl -sLS https://superterm.dev/get.sh | sudo bash"
               desc={
                 <>
-                  Installs superterm to{" "}
-                  <code className="font-mono bg-bg/40 px-1 py-0.5 rounded border border-border-bright/40">
-                    /usr/local/bin
-                  </code>
-                  . Sudo is needed to write binaries to{" "}
-                  <code className="font-mono bg-bg/40 px-1 py-0.5 rounded border border-border-bright/40">
-                    /usr/local/bin
-                  </code>
-                  .
-                  <span className="block mt-2">
-                    Want to inspect the installer first?{" "}
-                    <a
-                      href="https://superterm.dev/get.sh"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent/90 underline underline-offset-2 hover:text-accent/80"
-                    >
-                      View the installer script.
-                    </a>
-                  </span>
+                  Installs superterm to <code className="font-mono bg-bg/40 px-1 py-0.5 rounded border border-border-bright/40">/usr/local/bin</code>. Sudo required.{" "}
+                  <a
+                    href="https://superterm.dev/get.sh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent/90 underline underline-offset-2 hover:text-accent/80"
+                  >
+                    Inspect the script first.
+                  </a>
                 </>
               }
             />
@@ -492,37 +507,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── automate attention ─── */}
-      <section className="py-28 px-6 border-t border-border/30">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center mb-4">
-            Automate and integrate attention.
-          </h2>
-          <p className="text-center text-text/60 text-[15px] mb-10 max-w-xl mx-auto">
-            Wire your agents and scripts directly into superterm so the right sessions surface themselves — no polling, no babysitting.
-          </p>
-          <div className="max-w-lg mx-auto mb-14">
-            <NotifyCutout />
-          </div>
-          <div className="space-y-10">
-            <Step
-              n={1}
-              cmd="superterm agent-setup install"
-              desc="Configure all your agent CLIs — Claude Code, Codex, Gemini CLI and more — to feed status and attention signals directly into superterm."
-            />
-            <Step
-              n={2}
-              cmd="superterm notify agent-1"
-              desc="Ring the bell on a session — marks it as needing your attention from any script or agent hook."
-            />
-            <Step
-              n={3}
-              cmd={<>superterm notify agent-1 --title &quot;I need to run docker push&quot;</>}
-              desc="Send a message with the signal — surfaces a status update or permission request directly in your dashboard."
-            />
-          </div>
-        </div>
-      </section>
 
       {/* ─── pricing ─── */}
       <section id="pricing" className="py-28 px-6 border-t border-border/30">
@@ -541,15 +525,11 @@ export default function Home() {
               14-day free trial
             </div>
             <ul className="text-[14px] text-left space-y-3.5 mb-10 max-w-xs mx-auto">
-              <PricingItem text="Unlimited sessions" />
-              <PricingItem text="Attention system with sparklines" />
-              <PricingItem text="Mobile-friendly dashboard" />
-              <PricingItem text="Privacy / mask mode for social sharing" />
-              <PricingItem text="Works with any agent or shell" />
-              <PricingItem text="Linux, macOS, Windows (WSL)" />
-              <PricingItem text="Remote access via tunnel of your choice" />
-              <PricingItem text="Custom font/theme support" />
-              <PricingItem text="Regular updates" />
+              <PricingItem text="Works with Claude Code, Codex, Amp, OpenCode, anything" />
+              <PricingItem text="Attention system — always know who needs you" />
+              <PricingItem text="Logbook — goals, timeline, and prompts per session" />
+              <PricingItem text="Unblock agents from your phone" />
+              <PricingItem text="Self-hosted — your terminal data never leaves your machine" />
             </ul>
             <a
               href="https://buy.polar.sh/polar_cl_v0xeZUxJHqIwVNsctqTsIicy1othtVizTEs9u0Xi19s"
@@ -573,6 +553,15 @@ export default function Home() {
             FAQ
           </h2>
           <div className="space-y-3">
+            <FAQ
+              q="How does superterm integrate with my agents?"
+              a={
+                <>
+                  <p className="mb-4">Run <code className="font-mono text-accent/80">superterm agent-setup</code> to configure native hooks for Claude Code, Codex, Amp, and OpenCode automatically. For anything else, use <code className="font-mono text-accent/80">superterm notify</code> from any script or hook.</p>
+                  <NotifyCutout />
+                </>
+              }
+            />
             <FAQ
               q="Is the license per machine?"
               a="No — it's per person. One subscription covers all your personal devices. Run superterm on your workstation, laptop, home server, wherever you work."
