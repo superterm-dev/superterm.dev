@@ -4,7 +4,6 @@ import {
   EyeIcon,
   BookOpenIcon,
   SmartphoneIcon,
-  ShieldIcon,
   BotIcon,
   MonitorIcon,
   CheckIcon,
@@ -368,6 +367,8 @@ export default function Home() {
             Two are waiting for input. One died silently.
             <br />
             Three have been burning tokens in a loop.
+            <br />
+            And you&apos;ve lost track of what half of them were supposed to do.
           </p>
           <p className="text-xl sm:text-2xl text-text font-semibold mt-8">
             You only find out when you ssh back in.
@@ -432,7 +433,7 @@ export default function Home() {
             <FeatureCard
               icon={<BookOpenIcon className="w-5 h-5" />}
               title="Logbook"
-              desc="A persistent side pane anchored to each session. Capture your Now, This Week, and Horizon goals so you never lose the thread when switching across agents. Timeline shows what happened while you were away. Prompts saves reusable instructions."
+              desc="Your agents have context. Do you? Logbook anchors goals to each session — Now, This Week, Horizon — so you never lose the thread when switching across agents. Timeline shows what happened while you were away."
             />
             <FeatureCard
               icon={<BotIcon className="w-5 h-5" />}
@@ -460,14 +461,14 @@ export default function Home() {
               }
             />
             <FeatureCard
-              icon={<ShieldIcon className="w-5 h-5" />}
-              title="Privacy mode"
-              desc="One-click mask for screen sharing, screenshots, and social sharing. Share your workflow without leaking API keys or credentials."
-            />
-            <FeatureCard
               icon={<MonitorIcon className="w-5 h-5" />}
               title="Feels native, runs in the browser"
-              desc="Install as a PWA — opens from your dock or home screen, no browser chrome, full keyboard shortcuts. Ctrl+W edits text instead of closing a tab. Daemon runs on Linux, macOS, and WSL2. Restarting or updating superterm never drops a session — tmux runs independently and keeps all your work intact."
+              desc="Install as a PWA — dock icon, no browser chrome, full keyboard shortcuts. Restart or update superterm without losing a session; tmux runs independently."
+            />
+            <FeatureCard
+              icon={<CheckIcon className="w-5 h-5" />}
+              title="A clipboard that actually works"
+              desc={<>Switched machine or agent? Copy/paste is broken again. Superterm is a browser. Select text, copy, paste. Every machine. Every time.<span className="block mt-2">Pause the screen and scroll back through any agent&apos;s output using tmux&apos;s copy mode.</span></>}
             />
           </div>
         </div>
