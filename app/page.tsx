@@ -336,12 +336,14 @@ function LogbookPreview() {
       </div>
       {/* notes content */}
       <div className="mx-2 mb-2.5 rounded-md bg-bg/70 border border-border/40 px-2.5 py-2 leading-relaxed text-text-muted/70">
-        <div className="text-text/80 mb-1"># Goal</div>
-        <div className="mb-2">Refactor auth flow to use JWT</div>
-        <div className="text-text/80 mb-1"># Next steps</div>
-        <div className="text-accent/80">* Update middleware</div>
-        <div className="text-accent/80">* Write integration tests</div>
-        <div className="text-accent/80">* Review token expiry logic</div>
+        <div className="text-text-muted/40 mb-1">Now</div>
+        <div className="text-accent/80 mb-0.5">[x] Fix arrow keys in notes modal</div>
+        <div className="text-accent/80 mb-2">[ ] Write integration tests</div>
+        <div className="text-text-muted/40 mb-1">This week</div>
+        <div className="mb-0.5">[ ] Add streaming output to diff view</div>
+        <div className="mb-2">[ ] Review token expiry logic</div>
+        <div className="text-text-muted/40 mb-1">Horizon</div>
+        <div className="text-text-muted/50">[ ] Ship v2 auth API</div>
         <div className="mt-2 text-text-muted/40">─────────────────</div>
         <div className="mt-1.5 text-text-muted/50">Last updated 4m ago</div>
       </div>
@@ -388,7 +390,7 @@ function FAQ({
   a,
 }: {
   q: string;
-  a: string;
+  a: React.ReactNode;
 }) {
   return (
     <details className="group border border-border/60 rounded-xl">
@@ -522,61 +524,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── mobile preview ─── */}
-      <section className="py-28 px-6 border-t border-border/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-5">
-                Your Mac is the thin client.
-              </h2>
-              <p className="text-text/60 leading-relaxed mb-8 text-[15px]">
-                Run agents on a Linux box, cloud VM, or mini PC. Use phone or tablet to check progress and unblock agents when you are away from your desk. A tablet with a Bluetooth keyboard is the ideal remote setup.
-              </p>
-              <ul className="space-y-4 text-[14px] text-text-muted">
-                <li className="flex items-start gap-3">
-                  <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                  <span>Quick check-ins and unblocking from any browser</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                  <span>Best experience on tablet + Bluetooth keyboard</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                  <span>HTTPS via Tailscale, Cloudflared, Ngrok, or Inlets</span>
-                </li>
-              </ul>
-              <div className="mt-8 rounded-xl border border-border/70 bg-surface/40 p-4">
-                <div className="text-[11px] uppercase tracking-[0.14em] text-text-muted/60 mb-3">
-                  Experience Guide
-                </div>
-                <div className="space-y-2.5 text-[13px] text-text-muted">
-                  <div className="flex items-center gap-2.5">
-                    <MonitorIcon className="w-4 h-4 text-accent/90" />
-                    <span><span className="text-text">Laptop</span> = full experience</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <SmartphoneIcon className="w-4 h-4 text-amber" />
-                    <span><span className="text-text">Phone</span> = check status and unblock agents</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex items-center gap-1 text-accent/80">
-                      <SmartphoneIcon className="w-4 h-4" />
-                      <span className="text-[11px] text-text-muted/70">+</span>
-                      <KeyboardIcon className="w-4 h-4" />
-                    </div>
-                    <span><span className="text-text">Tablet + Bluetooth keyboard</span> = closer to full coding</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <DeviceStack />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ─── features ─── */}
       <section id="features" className="py-28 px-6 border-t border-border/30">
@@ -593,7 +540,7 @@ export default function Home() {
             <FeatureCard
               icon={<BookOpenIcon className="w-5 h-5" />}
               title="Logbook"
-              desc="A persistent side pane anchored to each session. Notes keeps your goals and observations in context. Timeline shows what happened while you were away. Prompts saves reusable instructions. Context-switch across 10 agents without losing the thread."
+              desc="A persistent side pane anchored to each session. Capture your Now, This Week, and Horizon goals so you never lose the thread when switching across agents. Timeline shows what happened while you were away. Prompts saves reusable instructions."
             />
             <FeatureCard
               icon={<BotIcon className="w-5 h-5" />}
@@ -686,15 +633,6 @@ export default function Home() {
             />
           </div>
 
-          <div className="hidden sm:block">
-            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-center mb-10 text-text">
-              Connect from anywhere.
-            </h3>
-            <p className="text-center text-[14px] text-text-muted mb-8">
-              Supermux runs locally. If you want remote access, here are some options:
-            </p>
-            <TunnelTabs />
-          </div>
         </div>
       </section>
 
@@ -704,9 +642,12 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center mb-4">
             Automate and integrate attention.
           </h2>
-          <p className="text-center text-text/60 text-[15px] mb-16 max-w-xl mx-auto">
+          <p className="text-center text-text/60 text-[15px] mb-10 max-w-xl mx-auto">
             Wire your agents and scripts directly into superterm so the right sessions surface themselves — no polling, no babysitting.
           </p>
+          <div className="max-w-lg mx-auto mb-14">
+            <NotifyCutout />
+          </div>
           <div className="space-y-10">
             <Step
               n={1}
@@ -805,8 +746,13 @@ export default function Home() {
               a="Yes. superterm reads terminal output the same way you would by looking at your screen. Unlike tools that integrate with Claude's Agent SDK, there's no API coupling, no wrappers, and no ToS exposure."
             />
             <FAQ
-              q="How does remote access work?"
-              a="superterm runs on your machine. Expose it with HTTPS via Cloudflared (cloudflared tunnel --url localhost:8080), ngrok (ngrok http 8080), inlets-pro (inlets-pro http client --upstream=http://127.0.0.1:8080), or Tailscale (tailscale funnel 8080)."
+              q="How do I access superterm remotely?"
+              a={
+                <>
+                  <p className="mb-4">Superterm runs on your machine. Expose it over HTTPS using any tunnel:</p>
+                  <TunnelTabs />
+                </>
+              }
             />
             <FAQ
               q="How private is it?"
@@ -925,14 +871,20 @@ function PricingItem({ text }: { text: string }) {
 function NotifyCutout() {
   return (
     <div className="mt-8 rounded-xl border border-border-bright/60 bg-surface/60 p-5">
-      <div className="font-mono text-[12px] text-text-muted/70 mb-3">Signal what matters</div>
-      <div className="rounded-lg border border-border/70 bg-bg/40 p-4 font-mono text-[12px] leading-relaxed overflow-x-auto">
-        <div className="text-accent/90">$ superterm notify agent-1</div>
-        <div className="text-text-muted">bell only: mark that session as needing attention</div>
-        <div className="mt-2 text-accent/90">
-          $ superterm notify agent-1 --title &quot;Claude wants to run tmux list-sessions&quot;
+      <div className="font-mono text-[12px] text-text-muted/70 mb-3">Notifications</div>
+      {/* notification preview */}
+      <div className="rounded-lg border border-amber/20 bg-amber/5 p-4 mb-3">
+        <div className="flex items-start gap-3">
+          <span className="text-xl leading-none select-none">🖐️</span>
+          <div>
+            <div className="text-[13px] text-text font-medium">Claude needs your attention</div>
+            <div className="text-[11px] text-text-muted/60 mt-0.5 font-mono">auth-refactor · waiting for approval</div>
+          </div>
         </div>
-        <div className="text-text-muted">send a status update or request into your dashboard</div>
+      </div>
+      <div className="text-[11px] text-text-muted/50 mb-2 pl-1">Trigger from any script or agent hook:</div>
+      <div className="rounded-lg border border-border/70 bg-bg/40 px-4 py-3 font-mono text-[12px] text-accent/90 overflow-x-auto">
+        superterm notify agent-1 --title &quot;Claude needs your attention&quot;
       </div>
     </div>
   );
