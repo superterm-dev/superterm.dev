@@ -13,6 +13,7 @@ import {
   MaskIcon,
 } from "./icons";
 import { TunnelTabs } from "./TunnelTabs";
+import { TrialCta } from "./TrialCta";
 
 /* ─── mock terminal screenshot ─── */
 function TerminalScreenshot() {
@@ -320,7 +321,7 @@ export default function Home() {
               href="#pricing"
               className="px-4 py-1.5 rounded-lg bg-accent text-bg text-[13px] font-semibold hover:bg-accent-dim transition-colors"
             >
-              Start free trial
+              Get full access
             </a>
           </div>
         </div>
@@ -337,19 +338,23 @@ export default function Home() {
             Everything your agents are doing, on one screen.
             <br className="hidden sm:block" />{" "}
             Claude Code, Codex, Gemini CLI, or
-            anything else&nbsp;&mdash; all at once. Know which one needs you.
+            anything else&nbsp;&mdash; all at once. Stay fresh. Focus only where you&apos;re needed.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
             <a
               href="#pricing"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-accent text-bg font-semibold text-sm hover:bg-accent-dim transition-colors"
             >
-              Start 14-day free trial
+              Pay now and get all access
               <ArrowRightIcon className="w-4 h-4" />
             </a>
-            <span className="text-[13px] text-text-muted">
-              $250/year after trial
-            </span>
+            <TrialCta
+              label="Start free trial"
+              className="inline-flex items-center justify-center rounded-lg border border-border-bright/70 px-7 py-3 text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent"
+            />
+          </div>
+          <div className="text-[13px] text-text-muted mb-20 -mt-14 sm:-mt-16">
+            $250/year paid upfront, or kick the tires with a 14-day free trial.
           </div>
         </div>
         <div className="max-w-5xl mx-auto">
@@ -436,13 +441,8 @@ export default function Home() {
               title="Agent agnostic"
               desc={
                 <>
-                  Claude Code, Codex, Gemini CLI, Aider, Claude Squad, custom scripts.
-                  <span className="block mt-2">
-                    <code className="inline-flex items-center px-2 py-1 rounded-md border border-border-bright/60 bg-bg/50 font-mono text-[12px] text-accent/90">
-                      superterm notify
-                    </code>
-                    <span className="ml-2">lets agents and scripts flag when they need you.</span>
-                  </span>
+                  Works with whatever you already run: Claude Code, Codex, Gemini CLI, Amp, OpenCode, Aider, or plain shell scripts.
+                  <span className="block mt-2">Shell scripts can integrate via <code className="font-mono text-accent/80 text-[11px]">superterm notify</code>.</span>
                 </>
               }
             />
@@ -451,8 +451,7 @@ export default function Home() {
               title="Check from anywhere"
               desc={
                 <>
-                  Mobile is purpose-built for three things: unblock an agent waiting on permission, send a follow-up to keep it moving, or check progress at a glance.
-                  <span className="block mt-2 text-text-muted/50">Not a full terminal — scrollback, text selection, and heavy editing belong on your laptop.</span>
+                  Mobile and tablet are optimized for quick checks, unblocking an agent waiting on permission, and sending follow-ups to keep work moving.
                 </>
               }
             />
@@ -514,25 +513,35 @@ export default function Home() {
           <div className="space-y-10 mb-16">
             <Step
               n={1}
+              cmd="mkdir -p ~/.superterm && nano ~/.superterm/LICENSE"
+              desc="Paste your license key from the email."
+            />
+            <Step
+              n={2}
               cmd="curl -sLS https://superterm.dev/get.sh | sudo bash"
               desc={
                 <>
-                  Installs superterm to <code className="font-mono bg-bg/40 px-1 py-0.5 rounded border border-border-bright/40">/usr/local/bin</code>. Sudo required.{" "}
+                  Uses <code className="font-mono bg-bg/40 px-1 py-0.5 rounded border border-border-bright/40">sudo</code> to install the binary.{" "}
                   <a
                     href="https://superterm.dev/get.sh"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-accent/90 underline underline-offset-2 hover:text-accent/80"
                   >
-                    Inspect the script first.
+                    View source
                   </a>
                 </>
               }
             />
             <Step
-              n={2}
+              n={3}
+              cmd="superterm agent-setup"
+              desc="Optional. Installs native hooks for supported coding agents."
+            />
+            <Step
+              n={4}
               cmd="superterm up"
-              desc="Attaches to your tmux sessions. Then click on the link."
+              desc="Click on the link printed out, and start working."
             />
           </div>
 
@@ -600,35 +609,40 @@ export default function Home() {
       <section id="pricing" className="py-28 px-6 border-t border-border/30">
         <div className="max-w-lg mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
-            One plan. No tiers.
+            You&apos;re in. Here&apos;s the link.
           </h2>
           <p className="text-text-muted text-[15px] mb-12">
-            Everything included. Self-hosted on your machine.
+            All in. One year. Let&apos;s go.
           </p>
           <div className="border border-border-bright/60 rounded-2xl p-10 bg-surface ring-1 ring-white/[0.02]">
             <div className="text-5xl font-bold tracking-tight mb-1">
               $250<span className="text-lg text-text-muted font-normal tracking-normal">/year</span>
             </div>
             <div className="text-[14px] text-text-muted/60 mb-10">
-              14-day free trial
+              Full access, billed up front
             </div>
             <ul className="text-[14px] text-left space-y-3.5 mb-10 max-w-xs mx-auto">
               <PricingItem text="Works with Claude Code, Codex, Amp, OpenCode, anything" />
-              <PricingItem text="Attention system — always know who needs you" />
+              <PricingItem text="Attention system — stay fresh and focus only where you're needed" />
               <PricingItem text="Logbook — goals, timeline, and prompts per session" />
               <PricingItem text="Unblock agents from your phone" />
               <PricingItem text="Self-hosted — your terminal data never leaves your machine" />
+              <PricingItem text="Discord access included for paid customers" />
             </ul>
             <a
-              href="https://buy.polar.sh/polar_cl_v0xeZUxJHqIwVNsctqTsIicy1othtVizTEs9u0Xi19s"
+              href="https://buy.polar.sh/polar_cl_9L0aSMQQ2dXH2nS1Z0csCuNnb4SBGUQo9zmTZ1TXCre"
               data-polar-checkout=""
               data-polar-checkout-theme="dark"
               className="block w-full py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm hover:bg-accent-dim transition-colors text-center"
             >
-              Start free for 14 days
+              Get full access
             </a>
+            <TrialCta
+              label="Start 14-day free trial"
+              className="mt-3 block w-full rounded-xl border border-border-bright/70 py-3.5 text-center text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent"
+            />
             <p className="mt-3 text-[12px] leading-relaxed text-text-muted/85">
-              You&apos;ll be charged the full $250/year amount after 14 days unless you cancel before trial end.
+              Subscription renews annually.
             </p>
           </div>
         </div>
@@ -726,7 +740,10 @@ export default function Home() {
             <LogoIcon className="w-4 h-4 text-accent/60" />
             <span>superterm</span>
           </div>
-          <div>&copy; {new Date().getFullYear()} superterm. All rights reserved.</div>
+          <div>
+            &copy; {new Date().getFullYear()} OpenFaaS Ltd. Made by the team
+            behind OpenFaaS, Inlets, and SlicerVM.
+          </div>
         </div>
       </footer>
       <Script
