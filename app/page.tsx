@@ -14,6 +14,7 @@ import {
 } from "./icons";
 import { TunnelTabs } from "./TunnelTabs";
 import { TrialCta } from "./TrialCta";
+import { PricingCard } from "./PricingCard";
 
 /* ─── mock terminal screenshot ─── */
 function TerminalScreenshot() {
@@ -345,7 +346,7 @@ export default function Home() {
               href="#pricing"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-accent text-bg font-semibold text-sm hover:bg-accent-dim transition-colors"
             >
-              Pay now and get all access
+              Get full access
               <ArrowRightIcon className="w-4 h-4" />
             </a>
             <TrialCta
@@ -354,7 +355,7 @@ export default function Home() {
             />
           </div>
           <div className="text-[13px] text-text-muted mb-20 -mt-14 sm:-mt-16">
-            $250/year paid upfront, or kick the tires with a 14-day free trial.
+            From $25/mo. Try free for 14 days, no credit card required.
           </div>
         </div>
         <div className="max-w-5xl mx-auto">
@@ -609,42 +610,12 @@ export default function Home() {
       <section id="pricing" className="py-28 px-6 border-t border-border/30">
         <div className="max-w-lg mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
-            You&apos;re in. Here&apos;s the link.
+            One plan. Every feature.
           </h2>
           <p className="text-text-muted text-[15px] mb-12">
-            All in. One year. Let&apos;s go.
+            Monthly flexibility or annual savings. Try free for 14 days.
           </p>
-          <div className="border border-border-bright/60 rounded-2xl p-10 bg-surface ring-1 ring-white/[0.02]">
-            <div className="text-5xl font-bold tracking-tight mb-1">
-              $250<span className="text-lg text-text-muted font-normal tracking-normal">/year</span>
-            </div>
-            <div className="text-[14px] text-text-muted/60 mb-10">
-              Full access, billed up front
-            </div>
-            <ul className="text-[14px] text-left space-y-3.5 mb-10 max-w-xs mx-auto">
-              <PricingItem text="Works with Claude Code, Codex, Amp, OpenCode, anything" />
-              <PricingItem text="Attention system — stay fresh and focus only where you're needed" />
-              <PricingItem text="Logbook — goals, timeline, and prompts per session" />
-              <PricingItem text="Unblock agents from your phone" />
-              <PricingItem text="Self-hosted — your terminal data never leaves your machine" />
-              <PricingItem text="Discord access included for paid customers" />
-            </ul>
-            <a
-              href="https://buy.polar.sh/polar_cl_9L0aSMQQ2dXH2nS1Z0csCuNnb4SBGUQo9zmTZ1TXCre"
-              data-polar-checkout=""
-              data-polar-checkout-theme="dark"
-              className="block w-full py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm hover:bg-accent-dim transition-colors text-center"
-            >
-              Get full access
-            </a>
-            <TrialCta
-              label="Start 14-day free trial"
-              className="mt-3 block w-full rounded-xl border border-border-bright/70 py-3.5 text-center text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent"
-            />
-            <p className="mt-3 text-[12px] leading-relaxed text-text-muted/85">
-              Subscription renews annually.
-            </p>
-          </div>
+          <PricingCard />
         </div>
       </section>
 
@@ -821,14 +792,6 @@ function Step({
   );
 }
 
-function PricingItem({ text }: { text: string }) {
-  return (
-    <li className="flex items-center gap-3">
-      <CheckIcon className="w-4 h-4 text-accent flex-shrink-0" />
-      <span className="text-text-muted">{text}</span>
-    </li>
-  );
-}
 
 function NotifyCutout() {
   return (
