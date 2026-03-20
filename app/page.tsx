@@ -13,6 +13,7 @@ import {
   MaskIcon,
 } from "./icons";
 import { TunnelTabs } from "./TunnelTabs";
+import { DemoVideo } from "./DemoVideo";
 
 /* ─── mock terminal screenshot ─── */
 function TerminalScreenshot() {
@@ -359,6 +360,16 @@ export default function Home() {
         </div>
         <div className="max-w-5xl mx-auto">
           <TerminalScreenshot />
+        </div>
+      </section>
+
+      {/* ─── demo video ─── */}
+      <section className="py-20 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-10">
+            See it in action.
+          </h2>
+          <DemoVideo />
         </div>
       </section>
 
