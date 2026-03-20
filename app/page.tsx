@@ -13,8 +13,6 @@ import {
   MaskIcon,
 } from "./icons";
 import { TunnelTabs } from "./TunnelTabs";
-import { TrialCta } from "./TrialCta";
-import { PricingCard } from "./PricingCard";
 
 /* ─── mock terminal screenshot ─── */
 function TerminalScreenshot() {
@@ -312,17 +310,17 @@ export default function Home() {
             <a href="#install" className="hidden sm:inline hover:text-text transition-colors">
               Install
             </a>
-            <a href="#pricing" className="hidden sm:inline hover:text-text transition-colors">
+            <a href="/pricing/" className="hidden sm:inline hover:text-text transition-colors">
               Pricing
             </a>
             <a href="#faq" className="hidden sm:inline hover:text-text transition-colors">
               FAQ
             </a>
             <a
-              href="#pricing"
+              href="/pricing/"
               className="px-4 py-1.5 rounded-lg bg-accent text-bg text-[13px] font-semibold hover:bg-accent-dim transition-colors"
             >
-              Get full access
+              Get started
             </a>
           </div>
         </div>
@@ -338,24 +336,25 @@ export default function Home() {
           <p className="text-[17px] sm:text-lg text-text/60 max-w-xl mx-auto mb-10 leading-relaxed font-normal">
             Everything your agents are doing, on one screen.
             <br className="hidden sm:block" />{" "}
-            Claude Code, Codex, Gemini CLI, or
-            anything else&nbsp;&mdash; all at once. Stay fresh. Focus only where you&apos;re needed.
+            Unblock agents from your phone. Stay fresh. Focus only where you&apos;re needed.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
             <a
-              href="#pricing"
+              href="#features"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-accent text-bg font-semibold text-sm hover:bg-accent-dim transition-colors"
             >
-              Get full access
+              See how it works
               <ArrowRightIcon className="w-4 h-4" />
             </a>
-            <TrialCta
-              label="Start free trial"
+            <a
+              href="/pricing/"
               className="inline-flex items-center justify-center rounded-lg border border-border-bright/70 px-7 py-3 text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent"
-            />
+            >
+              Compare plans
+            </a>
           </div>
           <div className="text-[13px] text-text-muted mb-20 -mt-14 sm:-mt-16">
-            From $25/mo. Try free for 14 days, no credit card required.
+            Free for personal and open source use. <a href="/pricing/" className="text-accent hover:text-accent-dim transition-colors">From $25/mo</a> for commercial use.
           </div>
         </div>
         <div className="max-w-5xl mx-auto">
@@ -424,7 +423,7 @@ export default function Home() {
       <section id="features" className="py-28 px-6 border-t border-border/30">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center mb-14">
-            One dashboard. Every agent.
+            One glance. Every agent.
           </h2>
           <div className="grid md:grid-cols-2 gap-5">
             <FeatureCard
@@ -452,7 +451,8 @@ export default function Home() {
               title="Check from anywhere"
               desc={
                 <>
-                  Mobile and tablet are optimized for quick checks, unblocking an agent waiting on permission, and sending follow-ups to keep work moving.
+                  Unlike macOS-only tools, superterm runs in any browser. Unblock an agent waiting on permission, send a follow-up, or check progress — from your phone, tablet, or any machine.
+                  <span className="block mt-2">A built-in browser keyboard puts Ctrl, Shift, and other modifier keys on screen — keys that native mobile keyboards don&apos;t have.</span>
                 </>
               }
             />
@@ -515,7 +515,7 @@ export default function Home() {
             <Step
               n={1}
               cmd="mkdir -p ~/.superterm && nano ~/.superterm/LICENSE"
-              desc="Paste your license key from the email."
+              desc={<>Paste your license key. Free for personal and open source use — <a href="/pricing/" className="text-accent/90 underline underline-offset-2 hover:text-accent/80">get a key</a>.</>}
             />
             <Step
               n={2}
@@ -550,72 +550,91 @@ export default function Home() {
       </section>
 
 
-      {/* ─── linux powerhouse callout ─── */}
+      {/* ─── always-on ─── */}
       <section className="py-20 px-6 border-t border-border/30">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center mb-4">
-            Your agents don&apos;t need you to buy the latest MacBook.
+            Run agents on an always-on machine.
           </h2>
           <p className="text-center text-text/60 text-[15px] max-w-lg mx-auto mb-12 leading-relaxed">
-            Save thousands of dollars and keep what you&apos;ve got. Superterm turns headless Linux into an absolute powerhouse.
+            Keep long-lived agent sessions running anywhere &mdash; then check progress and unblock them from your phone.
           </p>
-          <div className="flex flex-col sm:flex-row items-stretch gap-3">
-            {/* linux options */}
-            <div className="flex-1 flex flex-col gap-3">
-              <div className="rounded-xl border border-accent/20 bg-accent/5 p-5 flex items-start gap-4">
-                <span className="text-2xl leading-none">🖥️</span>
-                <div>
-                  <div className="font-semibold text-text text-[15px]">from $300</div>
-                  <div className="text-[13px] text-text-muted mt-0.5">Mini PC · 32 GB RAM · silent, runs 24/7</div>
-                </div>
-              </div>
-              <div className="rounded-xl border border-accent/20 bg-accent/5 p-5 flex items-start gap-4">
-                <span className="text-2xl leading-none">⚡</span>
-                <div>
-                  <div className="font-semibold text-text text-[15px]">from €37<span className="text-text-muted font-normal">/mo</span></div>
-                  <div className="text-[13px] text-text-muted mt-0.5">Hetzner AX · AMD Ryzen · 64 GB RAM · NVMe</div>
-                </div>
+          <div className="grid sm:grid-cols-2 gap-3">
+            <div className="rounded-xl border border-accent/20 bg-accent/5 p-5 flex items-start gap-4">
+              <span className="text-2xl leading-none">⚡</span>
+              <div>
+                <div className="font-semibold text-text text-[15px]">&euro;35<span className="text-text-muted font-normal">/mo+</span></div>
+                <div className="text-[13px] text-text-muted mt-0.5">Hetzner bare-metal &middot; AMD Ryzen &middot; 64 GB RAM</div>
               </div>
             </div>
-
-            {/* vs divider */}
-            <div className="flex sm:flex-col items-center justify-center gap-2 sm:gap-3 px-2">
-              <div className="h-px sm:h-full sm:w-px w-full bg-border/50 flex-1" />
-              <span className="text-[11px] uppercase tracking-widest text-text-muted/40 font-medium">vs</span>
-              <div className="h-px sm:h-full sm:w-px w-full bg-border/50 flex-1" />
-            </div>
-
-            {/* mac options */}
-            <div className="flex-1 flex flex-col gap-3">
-              <div className="rounded-xl border border-border/60 bg-surface/30 p-5 flex items-start gap-4">
-                <span className="text-2xl leading-none">💻</span>
-                <div>
-                  <div className="font-semibold text-text text-[15px]">$1,699</div>
-                  <div className="text-[13px] text-text-muted mt-0.5">MacBook Pro M5 14″ · base</div>
-                </div>
+            <div className="rounded-xl border border-accent/20 bg-accent/5 p-5 flex items-start gap-4">
+              <span className="text-2xl leading-none">☁️</span>
+              <div>
+                <div className="font-semibold text-text text-[15px]">$5<span className="text-text-muted font-normal">/mo+</span></div>
+                <div className="text-[13px] text-text-muted mt-0.5">Cloud VM &middot; any provider &middot; always available</div>
               </div>
-              <div className="rounded-xl border border-border/60 bg-surface/30 p-5 flex items-start gap-4">
-                <span className="text-2xl leading-none">💻</span>
-                <div>
-                  <div className="font-semibold text-text text-[15px]">$3,899<span className="text-text-muted font-normal">+</span></div>
-                  <div className="text-[13px] text-text-muted mt-0.5">MacBook Pro M5 Max 16″ · maxed</div>
-                </div>
+            </div>
+            <div className="rounded-xl border border-accent/20 bg-accent/5 p-5 flex items-start gap-4">
+              <span className="text-2xl leading-none">💻</span>
+              <div>
+                <div className="font-semibold text-text text-[15px]">$0</div>
+                <div className="text-[13px] text-text-muted mt-0.5">Old MacBook in clamshell mode &middot; already on your desk</div>
+              </div>
+            </div>
+            <div className="rounded-xl border border-accent/20 bg-accent/5 p-5 flex items-start gap-4">
+              <span className="text-2xl leading-none">🖥️</span>
+              <div>
+                <div className="font-semibold text-text text-[15px]">$300&ndash;$600</div>
+                <div className="text-[13px] text-text-muted mt-0.5">Mini PC or Mac Mini &middot; silent &middot; runs 24/7</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── pricing ─── */}
-      <section id="pricing" className="py-28 px-6 border-t border-border/30">
-        <div className="max-w-lg mx-auto text-center">
+      {/* ─── credibility ─── */}
+      <section className="py-20 px-6 border-t border-border/30">
+        <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
-            One plan. Every feature.
+            Built to last.
           </h2>
-          <p className="text-text-muted text-[15px] mb-12">
-            Monthly flexibility or annual savings. Try free for 14 days.
+          <p className="text-text/60 text-[15px] leading-relaxed mb-8 max-w-lg mx-auto">
+            From the founder of OpenFaaS.
+            superterm is commercially supported, actively developed, and designed for the long term.
           </p>
-          <PricingCard />
+          <div className="grid sm:grid-cols-3 gap-6 text-[14px] text-text-muted">
+            <div className="border border-border/60 rounded-xl p-5 bg-surface/50">
+              <div className="font-semibold text-text mb-1.5">The IDE for agents</div>
+              <div>IDEs were built for humans typing code. Agents don&apos;t need that. superterm is how you leave the IDE behind and fully embrace AI-driven development.</div>
+            </div>
+            <div className="border border-border/60 rounded-xl p-5 bg-surface/50">
+              <div className="font-semibold text-text mb-1.5">Real support</div>
+              <div>Our team has a track record of shipping fixes, answering questions, and maintaining infrastructure tools for years.</div>
+            </div>
+            <div className="border border-border/60 rounded-xl p-5 bg-surface/50">
+              <div className="font-semibold text-text mb-1.5">Crafted and refined</div>
+              <div>It&apos;s easy to vibe-code some slop and release it on GitHub. What&apos;s hard is handling edge cases across browsers, devices, and terminal quirks &mdash; and then standing behind it.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── pricing teaser ─── */}
+      <section id="pricing" className="py-28 px-6 border-t border-border/30">
+        <div className="max-w-xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
+            Free for personal and open source use.
+          </h2>
+          <p className="text-text-muted text-[15px] mb-8 leading-relaxed">
+            Commercial use from $25/mo.
+          </p>
+          <a
+            href="/pricing/"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-accent text-bg font-semibold text-sm hover:bg-accent-dim transition-colors"
+          >
+            See pricing
+            <ArrowRightIcon className="w-4 h-4" />
+          </a>
         </div>
       </section>
 
@@ -637,7 +656,7 @@ export default function Home() {
             />
             <FAQ
               q="Is the license per machine?"
-              a="No — it's per person. One subscription covers all your personal devices. Run superterm on your workstation, laptop, home server, wherever you work."
+              a="No — it's per person. One license covers all your devices. Run superterm on your workstation, laptop, home server, wherever you work. Free for personal, open source, and evaluation use up to 30 days. A paid license is required for professional, commercial, or ongoing internal team use."
             />
             <FAQ
               q="Isn't this just tmux?"
