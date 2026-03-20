@@ -24,7 +24,7 @@ export function DemoVideo() {
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://img.youtube.com/vi/cxoHAwpF5Ss/maxresdefault.jpg"
+            src="/demo-preview.jpg"
             alt="superterm demo preview"
             className="absolute inset-0 w-full h-full object-cover"
           />
