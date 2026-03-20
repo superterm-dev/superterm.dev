@@ -188,6 +188,94 @@ export default function PricingPage() {
           </div>
 
         </div>
+        {/* ── EULA ── */}
+        <div className="max-w-3xl mx-auto mt-14">
+          <details id="eula" className="group border border-border/60 rounded-xl">
+            <summary className="flex items-center justify-between cursor-pointer px-6 py-5 text-sm font-medium text-text hover:bg-surface-2/30 rounded-xl transition-colors">
+              End User License Agreement (EULA)
+              <svg className="w-4 h-4 text-text-muted/50 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
+            </summary>
+            <div className="px-6 pb-6 text-[13px] text-text-muted leading-relaxed space-y-4">
+              <p className="text-text-muted/50">Copyright &copy; 2026 OpenFaaS Ltd. Last updated: March 20, 2026</p>
+              <p>This End User License Agreement (&ldquo;Agreement&rdquo;) governs your use of Superterm, including the app, CLI, web interface, updates, documentation, and related materials (together, the &ldquo;Software&rdquo;).</p>
+              <p>This Agreement is between you and OpenFaaS Ltd. (&ldquo;Supplier&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;). By downloading, installing, activating, accessing, or using the Software, you agree to this Agreement. If you do not agree, do not use the Software.</p>
+
+              <h4 className="font-semibold text-text mt-6">1. License model</h4>
+              <p>1.1 If you use the Software on behalf of a company, employer, client, or other legal entity, then you represent that you have authority to bind that entity to this Agreement.</p>
+              <p>1.2 <span className="text-text">Community Edition and free trial.</span> Subject to this Agreement and any active free entitlement we require, we grant you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to use the Community Edition of the Software for personal, hobby, educational, and evaluation use only. Unless we expressly permit otherwise in writing, a free entitlement is granted per individual person, not per team, company, or organization.</p>
+              <p>1.3 Evaluation use is limited to one free trial period of up to thirty (30) days for one individual person. After that trial period ends, continued use requires an active paid entitlement recognized by us unless we expressly permit otherwise in writing. No additional or repeat free trial is granted for the same person.</p>
+              <p>1.4 <span className="text-text">Commercial use.</span> Any Commercial Use of the Software requires an active paid subscription, paid license key, or other paid commercial entitlement recognized by us. Subject to this Agreement and that active entitlement, we grant you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to use the Software for Commercial Use during the applicable paid term.</p>
+              <p>1.5 Commercial Use includes any use of the Software:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>by or for a company, employer, client, nonprofit, government body, or other organization;</li>
+                <li>in connection with your job, consultancy, freelance work, client work, or profession;</li>
+                <li>to support production, internal business operations, or revenue-generating activity;</li>
+                <li>on behalf of, or for the benefit of, a third party.</li>
+              </ul>
+              <p>An individual person may still require a paid commercial license if their use falls within this definition.</p>
+              <p>1.6 All use of the Software is subject to any license, subscription, activation, or access controls we require.</p>
+              <p>1.7 We may change or discontinue any free tier, free plan, free quota, or free usage path from time to time, including by giving notice where reasonably practicable. We are under no obligation to continue offering free use.</p>
+              <p>1.8 A paid license is required for commercial, professional, client, or ongoing internal team use. Evaluation use is limited to 30 days.</p>
+
+              <h4 className="font-semibold text-text mt-6">2. Restrictions</h4>
+              <p>Except where applicable law expressly permits and that right cannot lawfully be excluded, you must not:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>copy, reproduce, publish, distribute, or redistribute the Software;</li>
+                <li>sell, resell, sublicense, rent, lease, white-label, repackage, or otherwise commercialize the Software except as expressly authorized by us in writing;</li>
+                <li>make the Software available to third parties as a hosted or managed service;</li>
+                <li>modify, adapt, translate, or create derivative works from the Software;</li>
+                <li>reverse engineer, decompile, disassemble, or otherwise attempt to derive source code, trade secrets, or non-public aspects of the Software;</li>
+                <li>remove, obscure, or alter proprietary notices, branding, license controls, or technical restrictions;</li>
+                <li>bypass or attempt to bypass activation, billing, license, security, telemetry, rate limiting, or access controls;</li>
+                <li>use the Software in violation of law, regulation, sanctions, or third-party rights.</li>
+              </ul>
+
+              <h4 className="font-semibold text-text mt-6">3. Ownership</h4>
+              <p>The Software is licensed, not sold. We and our licensors retain all right, title, and interest in and to the Software and all related intellectual property rights. All rights not expressly granted are reserved.</p>
+
+              <h4 className="font-semibold text-text mt-6">4. Support, updates, and availability</h4>
+              <p>4.1 Free use includes no obligation to provide support, maintenance, updates, fixes, compatibility commitments, security patches, uptime commitments, service credits, or data recovery.</p>
+              <p>4.2 Paid use includes only the support or commercial benefits expressly described on the applicable order page, checkout, invoice, subscription terms, or separate signed writing. Unless we expressly agree otherwise in writing, no SLA, uptime guarantee, response-time commitment, or legal/compliance advisory obligation applies.</p>
+              <p>4.3 You are responsible for maintaining any valid credentials, payment status, license keys, or activation required for your use of the Software. If your entitlement ends, your right to use the Software ends.</p>
+
+              <h4 className="font-semibold text-text mt-6">5. Warranty disclaimer</h4>
+              <p>To the fullest extent permitted by law, the Software is provided &ldquo;as is&rdquo;, &ldquo;as available&rdquo;, and &ldquo;with all faults&rdquo;, without warranties, representations, conditions, or undertakings of any kind, whether express, implied, statutory, or otherwise.</p>
+              <p>We specifically disclaim all implied warranties and conditions, including merchantability, satisfactory quality, fitness for a particular purpose, title, non-infringement, quiet enjoyment, availability, accuracy, reliability, interoperability, and that the Software will be uninterrupted, error-free, or secure.</p>
+              <p>You use the Software entirely at your own risk. You are solely responsible for your systems, prompts, commands, automations, outputs, downstream actions, legal compliance, and for reviewing and validating anything generated, displayed, proxied, or surfaced through the Software.</p>
+
+              <h4 className="font-semibold text-text mt-6">6. Limitation of liability</h4>
+              <p>6.1 Nothing in this Agreement excludes or limits liability to the extent that such liability cannot lawfully be excluded or limited, including liability for death or personal injury caused by negligence, fraud, or fraudulent misrepresentation.</p>
+              <p>6.2 Subject to Section 6.1, we and our licensors, personnel, contractors, and suppliers will not be liable for any indirect, incidental, special, punitive, or consequential damages, or for any loss of profits, revenue, business, goodwill, data, or use, even if advised of the possibility of such damages.</p>
+              <p>6.3 Subject to Section 6.1, we have no liability arising out of or related to Community Edition use, free use, trial use, evaluation use, or other no-charge access, to the fullest extent permitted by law.</p>
+              <p>6.4 Subject to Section 6.1, our total aggregate liability arising out of or related to any paid commercial license, paid subscription, paid access, the Software, or this Agreement will not exceed the total fees actually paid by you to us for the Software during the twelve (12) months immediately preceding the event giving rise to the claim.</p>
+              <p>6.5 The liability cap in Section 6.4 is cumulative and not per claim.</p>
+              <p>6.6 You acknowledge that the Software is a low-cost developer tool and that the pricing reflects the allocation of risk in this Agreement. We are not agreeing to assume open-ended commercial risk, legal defense obligations, or uncapped damages unless we expressly agree otherwise in a separate signed writing.</p>
+
+              <h4 className="font-semibold text-text mt-6">7. Termination</h4>
+              <p>7.1 You may stop using the Software at any time.</p>
+              <p>7.2 We may suspend or terminate your access immediately if:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>you breach this Agreement;</li>
+                <li>you use the free license for Commercial Use;</li>
+                <li>you fail to pay fees when due;</li>
+                <li>we suspect abuse, fraud, unlawful use, security risk, or misuse of the Software;</li>
+                <li>we are required to do so for legal, technical, operational, or business reasons.</li>
+              </ul>
+              <p>7.3 On termination, all licenses granted under this Agreement end immediately and you must stop using the Software.</p>
+
+              <h4 className="font-semibold text-text mt-6">8. General</h4>
+              <p>8.1 We may update this Agreement from time to time. The latest version made available with the Software or on our website will apply to future use of the Software.</p>
+              <p>8.2 If you provide feedback, suggestions, ideas, or requests, we may use them without restriction or compensation, and you assign to us any rights needed for us to do so.</p>
+              <p>8.3 If any provision is held unenforceable, the remaining provisions will remain in effect.</p>
+              <p>8.4 Our failure to enforce any provision is not a waiver.</p>
+              <p>8.5 This Agreement is governed by the laws of England and Wales, excluding conflict of laws rules. The courts of England and Wales have exclusive jurisdiction, except that we may seek injunctive or equitable relief in any jurisdiction where a breach may occur.</p>
+              <p>8.6 If applicable law gives you rights that cannot be excluded or limited, this Agreement does not exclude those rights, but only to the minimum extent required by law.</p>
+              <p>8.7 This Agreement is the entire agreement between you and us regarding the Software, except for any separate signed agreement, order form, or subscription terms expressly incorporated into it.</p>
+              <p>8.8 If you have questions about this Agreement, contact us via the contact details published at superterm.dev.</p>
+            </div>
+          </details>
+        </div>
+
         <div className="max-w-md mx-auto mt-10 rounded-xl border border-border-bright/50 bg-surface/50 px-6 py-5 text-center">
           <div className="text-[14px] font-semibold text-text mb-1">Already an OpenFaaS or SlicerVM customer?</div>
           <div className="text-[13px] text-text-muted">Request a 100% discount code for commercial use.</div>
@@ -262,9 +350,9 @@ export default function PricingPage() {
             <LogoIcon className="w-4 h-4 text-accent/60" />
             <span>superterm</span>
           </a>
-          <div>
-            &copy; {new Date().getFullYear()} OpenFaaS Ltd. Made by the team
-            behind OpenFaaS, Inlets, and SlicerVM.
+          <div className="flex items-center gap-4">
+            <span>&copy; {new Date().getFullYear()} OpenFaaS Ltd.</span>
+            <a href="/pricing/#eula" className="hover:text-text transition-colors">EULA</a>
           </div>
         </div>
       </footer>

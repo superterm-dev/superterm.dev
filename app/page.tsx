@@ -730,9 +730,9 @@ export default function Home() {
             <LogoIcon className="w-4 h-4 text-accent/60" />
             <span>superterm</span>
           </div>
-          <div>
-            &copy; {new Date().getFullYear()} OpenFaaS Ltd. Made by the team
-            behind OpenFaaS, Inlets, and SlicerVM.
+          <div className="flex items-center gap-4">
+            <span>&copy; {new Date().getFullYear()} OpenFaaS Ltd.</span>
+            <a href="/pricing/#eula" className="hover:text-text transition-colors">EULA</a>
           </div>
         </div>
       </footer>
