@@ -107,7 +107,7 @@ export default function PricingPage() {
               data-polar-checkout-theme="dark"
               className="block w-full py-3.5 rounded-xl border border-accent text-accent font-semibold text-sm hover:bg-accent hover:text-bg transition-colors text-center"
             >
-              Install — it&apos;s free
+              Get Community Edition
             </a>
           </div>
 
