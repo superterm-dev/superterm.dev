@@ -442,7 +442,8 @@ export default function Home() {
               title="Attention system"
               desc={
                 <>
-                  Sparklines, status orbs, and bell detection across every session. Instantly see which agent finished, errored, or is waiting for you.
+                  Sparklines, status orbs, bell detection, and a private weekly heatmap across every session. Instantly see which agent finished, errored, or is waiting for you, and when you usually do your best work.
+                  <span className="block mt-2">All of it is computed locally from your own sessions. Nothing is uploaded or shared.</span>
                   <span className="block mt-2">Run <code className="font-mono text-accent/80 text-[11px]">superterm agent-setup</code> for native hooks with Claude Code, Codex, Amp, and OpenCode — no manual config.</span>
                 </>
               }
@@ -711,11 +712,19 @@ export default function Home() {
             />
             <FAQ
               q="How private is it?"
-              a="Completely. superterm is self-hosted. Your terminal data stays on your machine. Nothing is sent to any cloud service. The binary runs locally, the sessions are local, and the tunnel is yours. A 32-character random key is generated automatically to prevent unauthorized access."
+              a="Completely. superterm is self-hosted. Your terminal data stays on your machine. Nothing is sent to any cloud service. The binary runs locally, the sessions are local, and the tunnel is yours. A 32-character random key is generated automatically to prevent unauthorized access. That includes the stats panel and heatmap: they're generated locally from your own session activity."
+            />
+            <FAQ
+              q="Is the stats panel public telemetry?"
+              a="No. It's 100% private. superterm does not publish, upload, or share your activity anywhere. The stats panel is just local metadata from your own sessions, and the heatmap is there to show your prime time through the week."
+            />
+            <FAQ
+              q="How do the all time stats work?"
+              a="They're built from your own local session history, stored in SQLite on your machine. superterm keeps track of activity over time, then rolls that up into all-time totals and patterns so you can see long-term usage at a glance. Nothing is sent anywhere, and nothing is compared against other users."
             />
             <FAQ
               q="What does the attention system do?"
-              a="It watches for bell characters, output bursts, and idle periods across all sessions. Each one gets a sparkline and status orb so you can see at a glance which agents finished, errored, or need input. Claude Code integrates via native hooks, opencode via a plugin, and any other agent or script can use AGENTS.md instructions or superterm notify directly."
+              a="It watches for bell characters, output bursts, and idle periods across all sessions. Each one gets a sparkline and status orb so you can see at a glance which agents finished, errored, or need input. It also builds a private weekly heatmap so you can spot your prime time through the week. Claude Code integrates via native hooks, opencode via a plugin, and any other agent or script can use AGENTS.md instructions or superterm notify directly."
             />
             <FAQ
               q="What about privacy / mask mode?"
