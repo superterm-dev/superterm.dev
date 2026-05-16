@@ -275,11 +275,6 @@ export default function PricingPage() {
             </div>
           </details>
         </div>
-
-        <div className="max-w-md mx-auto mt-10 rounded-xl border border-border-bright/50 bg-surface/50 px-6 py-5 text-center">
-          <div className="text-[14px] font-semibold text-text mb-1">Already an OpenFaaS or SlicerVM customer?</div>
-          <div className="text-[13px] text-text-muted">Request a 100% discount code for commercial use.</div>
-        </div>
       </section>
 
       {/* ─── what counts ─── */}
