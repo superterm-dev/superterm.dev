@@ -79,7 +79,7 @@ export default function PricingPage() {
               <div className="text-4xl sm:text-5xl font-bold tracking-tight mb-1">
                 Free
               </div>
-              <div className="text-[14px] text-text-muted/60">
+              <div className="text-[14px] text-text-muted">
                 For personal and open source use
               </div>
             </div>
@@ -89,6 +89,7 @@ export default function PricingPage() {
               <Item text="Personal projects and hobby use" />
               <Item text="Open source contributions" />
               <Item text="Self-hosted — your data never leaves your machine" />
+              <Item text="Login with GitHub (Device Code)" />
               <Item text="Community support via Discord" />
               <li className="flex items-start gap-3">
                 <span className="w-4 h-4 flex-shrink-0 mt-0.5 text-text-muted text-center leading-4">—</span>
@@ -122,8 +123,8 @@ export default function PricingPage() {
             <div className="mb-8">
               <div className="text-sm font-semibold text-accent mb-3 uppercase tracking-wider">Professional</div>
 
-              {/* billing toggle */}
-              <div className="flex items-center gap-3 mb-3">
+              {/* price */}
+              <div className="flex items-center gap-3 mb-1">
                 <div className="text-4xl sm:text-5xl font-bold tracking-tight">
                   {annual ? "$250" : "$25"}
                   <span className="text-lg text-text-muted font-normal tracking-normal">
@@ -132,7 +133,12 @@ export default function PricingPage() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 mb-1">
+              <div className="text-[14px] text-text-muted mb-4">
+                Use Superterm at work
+              </div>
+
+              {/* billing toggle */}
+              <div className="flex items-center gap-3">
                 <span
                   className={`text-[13px] cursor-pointer select-none transition-colors ${!annual ? "text-text font-semibold" : "text-text-muted"}`}
                   onClick={() => setAnnual(false)}
@@ -157,12 +163,6 @@ export default function PricingPage() {
                 </span>
                 <span className="text-[12px] text-accent font-medium">Save $50 with annual</span>
               </div>
-
-              <div className="text-[14px] text-text-muted/60">
-                {annual
-                  ? "Billed annually — save $50 vs monthly"
-                  : "Billed monthly, cancel anytime"}
-              </div>
             </div>
 
             <ul className="text-[14px] text-text-muted space-y-3.5 mb-10 flex-1">
@@ -171,6 +171,8 @@ export default function PricingPage() {
               <Item text="Professional and commercial use" />
               <Item text="Client work, consulting, and agencies" />
               <Item text="Production and internal team workflows" />
+              <Item text="Login with GitHub (your own OAuth App)" />
+              <Item text="Login with OIDC (Keycloak, Auth0, Okta, Google, etc.)" />
               <Item text="Email support" />
             </ul>
 

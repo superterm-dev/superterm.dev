@@ -676,7 +676,7 @@ export default function Home() {
             />
             <FAQ
               q="Why not just use Ghostty, Kitty, or Alacritty?"
-              a="superterm isn't a terminal emulator. It's the command center above your terminals. A session-aware dashboard for your tmux sessions. Keep using Ghostty locally and check on your agents from your phone with superterm."
+              a="superterm integrates with tmux directly. It can launch the sessions, or you can start them from your preferred terminal emulator — be that a VS Code tab, Zed, or Ghostty. superterm means you can connect to those sessions from the web or your mobile device."
             />
             <FAQ
               q="What can I actually do on my phone or tablet?"
@@ -688,7 +688,7 @@ export default function Home() {
                     <li>✅ Send a follow-up message to keep it moving</li>
                     <li>✅ Check progress across all your sessions at a glance</li>
                   </ul>
-                  <p className="mb-2">It is not a full terminal. Scrollback, text selection, and editing are laptop territory — trying to use it that way on a phone will frustrate you.</p>
+                  <p className="mb-2">It's not a replacement for an actual keyboard. Scrollback, text selection, and editing are laptop territory. Trying to use it that way on a phone will frustrate you.</p>
                   <p>Think of it like checking Slack on your phone while your build runs on your workstation.</p>
                 </>
               }
@@ -712,15 +712,11 @@ export default function Home() {
             />
             <FAQ
               q="How private is it?"
-              a="Completely. superterm is self-hosted. Your terminal data stays on your machine. Nothing is sent to any cloud service. The binary runs locally, the sessions are local, and the tunnel is yours. A 32-character random key is generated automatically to prevent unauthorized access. That includes the stats panel and heatmap: they're generated locally from your own session activity."
+              a="Completely. superterm is self-hosted. Your terminal data stays on your machine. Nothing is sent to any cloud service. The binary runs locally, the sessions are local, and the tunnel is yours. Authentication is on by default. Login with GitHub, OIDC, a generated token, or an OTP code. That includes the stats panel and heatmap: they're generated locally from your own session activity."
             />
             <FAQ
-              q="Is the stats panel public telemetry?"
-              a="No. It's 100% private. superterm does not publish, upload, or share your activity anywhere. The stats panel is just local metadata from your own sessions, and the heatmap is there to show your prime time through the week."
-            />
-            <FAQ
-              q="How do the all time stats work?"
-              a="They're built from your own local session history, stored in SQLite on your machine. superterm keeps track of activity over time, then rolls that up into all-time totals and patterns so you can see long-term usage at a glance. Nothing is sent anywhere, and nothing is compared against other users."
+              q="How do the stats and heatmap work?"
+              a="Built from your own local session history, stored in SQLite on your machine. Nothing is uploaded, shared, or compared against other users — the heatmap just shows your prime time through the week."
             />
             <FAQ
               q="What does the attention system do?"
