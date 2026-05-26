@@ -50,21 +50,19 @@ export function PricingCard() {
           </span>
         </div>
         <span className="inline-block rounded-full bg-accent/15 px-3 py-1 text-[13px] font-semibold text-accent">
-          Save $50 with annual
+          Save $60 with annual
         </span>
       </div>
 
       {/* price */}
       <div className="text-5xl font-bold tracking-tight mb-1">
-        {annual ? "$250" : "$25"}
+        {annual ? "$240" : "$25"}
         <span className="text-lg text-text-muted font-normal tracking-normal">
           {annual ? "/year" : "/mo"}
         </span>
       </div>
-      <div className="text-[14px] text-text-muted/60 mb-10">
-        {annual
-          ? "Billed annually — save $50 vs monthly"
-          : "Billed monthly, cancel anytime"}
+      <div className="text-[14px] text-text-muted mb-10">
+        Use Superterm at work
       </div>
 
       {/* features */}

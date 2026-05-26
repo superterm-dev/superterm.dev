@@ -75,7 +75,7 @@ export function TrialCta({ label, className = "" }: TrialCtaProps) {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
-                  <span>Upgrade later from $25/mo or $250/year.</span>
+                  <span>Upgrade later from $20/mo (billed annually) or $25/mo.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />

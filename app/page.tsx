@@ -355,7 +355,7 @@ export default function Home() {
             </a>
           </div>
           <div className="text-[13px] text-text-muted mb-20 -mt-14 sm:-mt-16">
-            Free for personal and open source use. <a href="/pricing/" className="text-accent hover:text-accent-dim transition-colors">From $25/mo</a> for commercial use.
+            Free for personal and open source use. <a href="/pricing/" className="text-accent hover:text-accent-dim transition-colors">From $20/mo</a> for commercial use.
           </div>
         </div>
         <div className="max-w-5xl mx-auto">
@@ -638,7 +638,7 @@ export default function Home() {
             Free for personal and open source use.
           </h2>
           <p className="text-text-muted text-[15px] mb-8 leading-relaxed">
-            Commercial use from $25/mo.
+            Commercial use from $20/mo.
           </p>
           <a
             href="/pricing/"

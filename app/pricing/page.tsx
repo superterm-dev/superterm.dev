@@ -126,7 +126,7 @@ export default function PricingPage() {
               {/* price */}
               <div className="flex items-center gap-3 mb-1">
                 <div className="text-4xl sm:text-5xl font-bold tracking-tight">
-                  {annual ? "$250" : "$25"}
+                  {annual ? "$240" : "$25"}
                   <span className="text-lg text-text-muted font-normal tracking-normal">
                     {annual ? "/year" : "/mo"}
                   </span>
@@ -161,7 +161,7 @@ export default function PricingPage() {
                 >
                   Annual
                 </span>
-                <span className="text-[12px] text-accent font-medium">Save $50 with annual</span>
+                <span className="text-[12px] text-accent font-medium">Save $60 with annual</span>
               </div>
             </div>
 
