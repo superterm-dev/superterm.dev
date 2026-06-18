@@ -707,12 +707,13 @@ export default function Home() {
                 <>
                   <p className="mb-4">Superterm runs on your machine. Expose it over HTTPS using any tunnel:</p>
                   <TunnelTabs />
+                  <p className="mt-4">Authentication is on by default. Login with GitHub, OIDC, a generated token, or an OTP code.</p>
                 </>
               }
             />
             <FAQ
               q="How private is it?"
-              a="Completely. superterm is self-hosted. Your terminal data stays on your machine. Nothing is sent to any cloud service. The binary runs locally, the sessions are local, and the tunnel is yours. Authentication is on by default. Login with GitHub, OIDC, a generated token, or an OTP code. That includes the stats panel and heatmap: they're generated locally from your own session activity."
+              a="Completely. superterm is self-hosted. Your terminal data stays on your machine. Nothing is sent to any cloud service. The binary runs locally, the sessions are local, and the tunnel is yours. That includes the stats panel and heatmap: they're generated locally from your own session activity."
             />
             <FAQ
               q="How do the stats and heatmap work?"
