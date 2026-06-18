@@ -40,6 +40,9 @@ export default function PricingPage() {
             <a href="/#faq" className="hidden sm:inline hover:text-text transition-colors">
               FAQ
             </a>
+            <a href="/support/" className="hidden sm:inline hover:text-text transition-colors">
+              Support
+            </a>
             <a
               href="/#install"
               className="px-4 py-1.5 rounded-lg bg-accent text-bg text-[13px] font-semibold hover:bg-accent-dim transition-colors"
