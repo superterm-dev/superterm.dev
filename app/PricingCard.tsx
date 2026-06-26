@@ -19,7 +19,7 @@ function PricingItem({ text }: { text: string }) {
 }
 
 export function PricingCard() {
-  const [annual, setAnnual] = useState(false);
+  const [annual, setAnnual] = useState(true);
 
   return (
     <div className="border border-border-bright/60 rounded-2xl p-10 bg-surface ring-1 ring-white/[0.02]">
@@ -50,16 +50,19 @@ export function PricingCard() {
           </span>
         </div>
         <span className="inline-block rounded-full bg-accent/15 px-3 py-1 text-[13px] font-semibold text-accent">
-          Save $60 with annual
+          {annual ? "You save $60 a year" : "Save $60 with annual"}
         </span>
       </div>
 
       {/* price */}
       <div className="text-5xl font-bold tracking-tight mb-1">
-        {annual ? "$240" : "$25"}
+        {annual ? "$20" : "$25"}
         <span className="text-lg text-text-muted font-normal tracking-normal">
-          {annual ? "/year" : "/mo"}
+          /mo
         </span>
+      </div>
+      <div className="text-[12px] text-text-muted/70 mb-1">
+        {annual ? "Billed annually at $240" : "Billed monthly"}
       </div>
       <div className="text-[14px] text-text-muted mb-10">
         Use Superterm at work
@@ -91,7 +94,7 @@ export function PricingCard() {
         className="mt-3 block w-full rounded-xl border border-border-bright/70 py-3.5 text-center text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent"
       />
       <p className="mt-3 text-[12px] leading-relaxed text-text-muted/85">
-        No credit card required for trial. Paid plans renew automatically.
+        Card required. The 14-day trial converts to a paid plan unless you cancel.
       </p>
     </div>
   );

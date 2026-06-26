@@ -71,7 +71,7 @@ export default function SupportPage() {
             </p>
             <ul className="text-[14px] text-text-muted space-y-3.5 mb-8 flex-1">
               <Item text="In your purchase email, click “Access purchase”, then “Connect Discord account” to join." />
-              <Item text="Free for personal and open source use." />
+              <Item text="Free for personal use." />
               <Item text="Lost the email? Re-request your key below — it links you back to the same access page." />
             </ul>
             <a

@@ -19,7 +19,7 @@ function Item({ text }: { text: string }) {
 }
 
 export default function PricingPage() {
-  const [annual, setAnnual] = useState(false);
+  const [annual, setAnnual] = useState(true);
 
   return (
     <div className="min-h-screen">
@@ -60,7 +60,7 @@ export default function PricingPage() {
             Pricing
           </h1>
           <p className="text-[16px] sm:text-lg text-text/50 max-w-md mx-auto leading-relaxed mb-6">
-            Free for personal and open source use. Paid for commercial use.
+            Free for personal use. Start a 14-day trial for commercial use.
           </p>
           <a
             href="#which-tier"
@@ -78,21 +78,20 @@ export default function PricingPage() {
           {/* ── Free ── */}
           <div className="border border-border-bright/60 rounded-2xl p-8 sm:p-10 bg-surface ring-1 ring-white/[0.02] flex flex-col">
             <div className="mb-8">
-              <div className="text-sm font-semibold text-accent mb-3 uppercase tracking-wider">Community Edition</div>
+              <div className="text-sm font-semibold text-accent mb-3 uppercase tracking-wider">Personal, non-commercial use</div>
               <div className="text-4xl sm:text-5xl font-bold tracking-tight mb-1">
                 Free
               </div>
               <div className="text-[14px] text-text-muted">
-                For personal and open source use
+                Community Edition
               </div>
             </div>
 
             <ul className="text-[14px] text-text-muted space-y-3.5 mb-10 flex-1">
               <Item text="Attention system, logbook, and mobile access" />
-              <Item text="Personal projects and hobby use" />
-              <Item text="Open source contributions" />
-              <Item text="Self-hosted — your data never leaves your machine" />
-              <Item text="Login with GitHub (Device Code)" />
+              <Item text="Install Superterm on one device" />
+              <Item text="2 built-in themes: dark or light" />
+              <Item text="Login with static token or OTP" />
               <Item text="Community support via Discord" />
               <li className="flex items-start gap-3">
                 <span className="w-4 h-4 flex-shrink-0 mt-0.5 text-text-muted text-center leading-4">—</span>
@@ -124,20 +123,24 @@ export default function PricingPage() {
             </div>
 
             <div className="mb-8">
-              <div className="text-sm font-semibold text-accent mb-3 uppercase tracking-wider">Professional</div>
+              <div className="text-sm font-semibold text-accent mb-3 uppercase tracking-wider">Commercial &amp; professional use</div>
 
               {/* price */}
               <div className="flex items-center gap-3 mb-1">
                 <div className="text-4xl sm:text-5xl font-bold tracking-tight">
-                  {annual ? "$240" : "$25"}
+                  {annual ? "$20" : "$25"}
                   <span className="text-lg text-text-muted font-normal tracking-normal">
-                    {annual ? "/year" : "/mo"}
+                    /mo
                   </span>
                 </div>
               </div>
 
+              <div className="text-[12px] text-text-muted/70 mb-1">
+                {annual ? "Billed annually at $240" : "Billed monthly"}
+              </div>
+
               <div className="text-[14px] text-text-muted mb-4">
-                Use Superterm at work
+                Professional — built for all-day agent use
               </div>
 
               {/* billing toggle */}
@@ -164,19 +167,18 @@ export default function PricingPage() {
                 >
                   Annual
                 </span>
-                <span className="text-[12px] text-accent font-medium">Save $60 with annual</span>
+                <span className="text-[12px] text-accent font-medium">{annual ? "You save $60 a year" : "Save $60 with annual"}</span>
               </div>
             </div>
 
             <ul className="text-[14px] text-text-muted space-y-3.5 mb-10 flex-1">
               <Item text="Everything in Community Edition" />
-              <Item text="Covers all your devices" />
-              <Item text="Professional and commercial use" />
-              <Item text="Client work, consulting, and agencies" />
-              <Item text="Production and internal team workflows" />
-              <Item text="Login with GitHub (your own OAuth App)" />
+              <Item text="Install Superterm on any of your devices" />
+              <Item text="15 colour themes and 10 fonts" />
+              <Item text="Queued send — agents resume on a schedule, picking back up when your credits top up" />
+              <Item text="Login with GitHub (Device Code or your own OAuth App)" />
               <Item text="Login with OIDC (Keycloak, Auth0, Okta, Google, etc.)" />
-              <Item text="Email support" />
+              <Item text="Commercial use allowed, with email support" />
             </ul>
 
             <a
@@ -185,10 +187,10 @@ export default function PricingPage() {
               data-polar-checkout-theme="dark"
               className="block w-full py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm hover:bg-accent-dim transition-colors text-center"
             >
-              Get full access
+              Start 14-day free trial
             </a>
-            <p className="mt-3 text-[12px] text-text-muted/60 text-center">
-              Per person. Paid plans renew automatically.
+            <p className="mt-3 text-[12px] text-text-muted/85 text-center">
+              Then {annual ? "$20/mo billed annually" : "$25/mo"}. Card required &mdash; cancel any time before day 14.
             </p>
           </div>
 
@@ -201,14 +203,14 @@ export default function PricingPage() {
               <svg className="w-4 h-4 text-text-muted/50 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
             </summary>
             <div className="px-6 pb-6 text-[13px] text-text-muted leading-relaxed space-y-4">
-              <p className="text-text-muted/50">Copyright &copy; 2026 OpenFaaS Ltd. Last updated: March 20, 2026</p>
+              <p className="text-text-muted/50">Copyright &copy; 2026 OpenFaaS Ltd. Last updated: June 26, 2026</p>
               <p>This End User License Agreement (&ldquo;Agreement&rdquo;) governs your use of Superterm, including the app, CLI, web interface, updates, documentation, and related materials (together, the &ldquo;Software&rdquo;).</p>
               <p>This Agreement is between you and OpenFaaS Ltd. (&ldquo;Supplier&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;). By downloading, installing, activating, accessing, or using the Software, you agree to this Agreement. If you do not agree, do not use the Software.</p>
 
               <h4 className="font-semibold text-text mt-6">1. License model</h4>
               <p>1.1 If you use the Software on behalf of a company, employer, client, or other legal entity, then you represent that you have authority to bind that entity to this Agreement.</p>
-              <p>1.2 <span className="text-text">Community Edition and free trial.</span> Subject to this Agreement and any active free entitlement we require, we grant you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to use the Community Edition of the Software for personal, hobby, educational, and evaluation use only. Unless we expressly permit otherwise in writing, a free entitlement is granted per individual person, not per team, company, or organization.</p>
-              <p>1.3 Evaluation use is limited to one free trial period of up to thirty (30) days for one individual person. After that trial period ends, continued use requires an active paid entitlement recognized by us unless we expressly permit otherwise in writing. No additional or repeat free trial is granted for the same person.</p>
+              <p>1.2 <span className="text-text">Community Edition.</span> Subject to this Agreement and any active free entitlement we require, we grant you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to use the Community Edition of the Software for personal, hobby, and educational use only. Unless we expressly permit otherwise in writing, a free entitlement is granted per individual person, not per team, company, or organization.</p>
+              <p>1.3 <span className="text-text">Commercial trial.</span> We may offer a one-time trial period of up to fourteen (14) days for one individual person to evaluate the Software for Commercial Use. A trial requires a valid payment method, and unless cancelled before the trial period ends, it converts automatically into a paid subscription that is billed at the applicable rate. No additional or repeat trial is granted for the same person.</p>
               <p>1.4 <span className="text-text">Commercial use.</span> Any Commercial Use of the Software requires an active paid subscription, paid license key, or other paid commercial entitlement recognized by us. Subject to this Agreement and that active entitlement, we grant you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to use the Software for Commercial Use during the applicable paid term.</p>
               <p>1.5 Commercial Use includes any use of the Software:</p>
               <ul className="list-disc pl-5 space-y-1">
@@ -220,7 +222,7 @@ export default function PricingPage() {
               <p>An individual person may still require a paid commercial license if their use falls within this definition.</p>
               <p>1.6 All use of the Software is subject to any license, subscription, activation, or access controls we require.</p>
               <p>1.7 We may change or discontinue any free tier, free plan, free quota, or free usage path from time to time, including by giving notice where reasonably practicable. We are under no obligation to continue offering free use.</p>
-              <p>1.8 A paid license is required for commercial, professional, client, or ongoing internal team use. Evaluation use is limited to 30 days.</p>
+              <p>1.8 A paid license is required for commercial, professional, client, or ongoing internal team use. Any trial is limited to 14 days and converts to a paid subscription unless cancelled beforehand.</p>
 
               <h4 className="font-semibold text-text mt-6">2. Restrictions</h4>
               <p>Except where applicable law expressly permits and that right cannot lawfully be excluded, you must not:</p>
@@ -294,11 +296,7 @@ export default function PricingPage() {
               <ul className="space-y-2 text-text-muted">
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-0.5">—</span>
-                  <span>Personal side projects and hobby use</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent mt-0.5">—</span>
-                  <span>Open source contributions</span>
+                  <span>Hobby use on your own devices</span>
                 </li>
               </ul>
             </div>
@@ -307,7 +305,7 @@ export default function PricingPage() {
               <ul className="space-y-2 text-text-muted">
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-0.5">—</span>
-                  <span>Use CE free for 30-day evaluation</span>
+                  <span>Start with a 14-day trial, then it&apos;s paid</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-0.5">—</span>
@@ -325,7 +323,7 @@ export default function PricingPage() {
             </div>
           </div>
           <div className="mt-10 rounded-xl border border-border/60 bg-surface/30 px-6 py-5 max-w-lg mx-auto text-[13px] text-text-muted leading-relaxed">
-            <span className="font-semibold text-text">What counts as evaluation?</span> Trying superterm before purchase for up to 30 days. It does not include ongoing internal use, production use, client work, or repeated evaluation periods.
+            <span className="font-semibold text-text">How does the trial work?</span> Try superterm for commercial use free for 14 days. A card is required up front, and your subscription begins automatically when the trial ends unless you cancel. One trial per person.
           </div>
         </div>
       </section>

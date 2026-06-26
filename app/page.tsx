@@ -358,7 +358,7 @@ export default function Home() {
             </a>
           </div>
           <div className="text-[13px] text-text-muted mb-20 -mt-14 sm:-mt-16">
-            Free for personal and open source use. <a href="/pricing/" className="text-accent hover:text-accent-dim transition-colors">From $20/mo</a> for commercial use.
+            Free for personal use. <a href="/pricing/" className="text-accent hover:text-accent-dim transition-colors">From $20/mo</a> for commercial use.
           </div>
         </div>
         <div className="max-w-5xl mx-auto">
@@ -530,7 +530,7 @@ export default function Home() {
             <Step
               n={1}
               cmd="mkdir -p ~/.superterm && nano ~/.superterm/LICENSE"
-              desc={<>Paste your license key. Free for personal and open source use — <a href="/pricing/" className="text-accent/90 underline underline-offset-2 hover:text-accent/80">get a key</a>.</>}
+              desc={<>Paste your license key. Free for personal use — <a href="/pricing/" className="text-accent/90 underline underline-offset-2 hover:text-accent/80">get a key</a>.</>}
             />
             <Step
               n={2}
@@ -638,10 +638,10 @@ export default function Home() {
       <section id="pricing" className="py-28 px-6 border-t border-border/30">
         <div className="max-w-xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
-            Free for personal and open source use.
+            Free for personal use.
           </h2>
           <p className="text-text-muted text-[15px] mb-8 leading-relaxed">
-            Commercial use from $20/mo.
+            Commercial use from $20/mo, with a 14-day trial.
           </p>
           <a
             href="/pricing/"
@@ -671,7 +671,7 @@ export default function Home() {
             />
             <FAQ
               q="Is the license per machine?"
-              a="No — it's per person. One license covers all your devices. Run superterm on your workstation, laptop, home server, wherever you work. Free for personal, open source, and evaluation use up to 30 days. A paid license is required for professional, commercial, or ongoing internal team use."
+              a="No — it's per person. One license covers all your devices. Run superterm on your workstation, laptop, home server, wherever you work. Free for personal use. A paid license is required for professional, commercial, or ongoing internal team use — start with a 14-day trial that converts to a paid subscription unless you cancel."
             />
             <FAQ
               q="Isn't this just tmux?"
