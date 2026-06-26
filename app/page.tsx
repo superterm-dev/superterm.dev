@@ -557,7 +557,17 @@ export default function Home() {
             <Step
               n={4}
               cmd="superterm up"
-              desc="Click on the link printed out, and start working."
+              desc={
+                <>
+                  Click on the link printed out, and start working.
+                  <span className="block mt-1.5 text-[13px] text-text-muted/70">
+                    For additional options see{" "}
+                    <code className="font-mono bg-bg/40 px-1 py-0.5 rounded border border-border-bright/40">superterm up --help</code>{" "}
+                    or{" "}
+                    <code className="font-mono bg-bg/40 px-1 py-0.5 rounded border border-border-bright/40">superterm service install --help</code>.
+                  </span>
+                </>
+              }
             />
           </div>
 
@@ -671,7 +681,16 @@ export default function Home() {
             />
             <FAQ
               q="Is the license per machine?"
-              a="No — it's per person. One license covers all your devices. Run superterm on your workstation, laptop, home server, wherever you work. Free for personal use. A paid license is required for professional, commercial, or ongoing internal team use — start with a 14-day trial that converts to a paid subscription unless you cancel."
+              a="It's per person, not per machine. Professional covers all your devices — workstation, laptop, home server, wherever you work. Community Edition is free for personal, non-commercial use and limited to a single device. A paid license is required for professional, commercial, or ongoing internal team use — start with a 14-day trial that converts to a paid subscription unless you cancel."
+            />
+            <FAQ
+              q="What's the difference between Community Edition and Professional?"
+              a={
+                <>
+                  <p className="mb-3">Community Edition is a deliberately stripped-back build for hobbyists tinkering on a single device in their spare time: two themes, basic token login, community-only support, and no warranty. It's enough to try the idea — and not much more.</p>
+                  <p>Professional is the real product. Install on every device you own, 15 themes and 10 fonts, queued send, multi-line input, image paste, copy/paste from TUIs like opencode and amp, GitHub and OIDC login, and direct email support. If you reach for an agent more than the odd weekend, you'll outgrow Community Edition quickly — Professional is built for all-day use, and your subscription is what keeps superterm being developed.</p>
+                </>
+              }
             />
             <FAQ
               q="Isn't this just tmux?"
@@ -695,6 +714,10 @@ export default function Home() {
                   <p>Think of it like checking Slack on your phone while your build runs on your workstation.</p>
                 </>
               }
+            />
+            <FAQ
+              q="Can I paste images to my agent?"
+              a="Yes — paste or upload images straight to your agent in Professional. Handy for screenshots, mockups, and error dialogs. Community Edition is text-only."
             />
             <FAQ
               q="How does it compare to multi-agent orchestrators?"

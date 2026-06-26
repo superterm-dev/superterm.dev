@@ -60,7 +60,7 @@ export default function PricingPage() {
             Pricing
           </h1>
           <p className="text-[16px] sm:text-lg text-text/50 max-w-md mx-auto leading-relaxed mb-6">
-            Free for personal use. Start a 14-day trial for commercial use.
+            Free for personal, non-commercial use. Paid for commercial use, starting with a 14-day trial.
           </p>
           <a
             href="#which-tier"
@@ -83,7 +83,7 @@ export default function PricingPage() {
                 Free
               </div>
               <div className="text-[14px] text-text-muted">
-                Community Edition
+                Limited features for hobbyists
               </div>
             </div>
 
@@ -118,12 +118,12 @@ export default function PricingPage() {
           <div className="border border-accent/30 rounded-2xl p-8 sm:p-10 bg-surface ring-1 ring-accent/[0.08] flex flex-col relative">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
               <span className="inline-block rounded-full bg-accent px-4 py-1 text-[12px] font-semibold text-bg uppercase tracking-wider">
-                For teams
+                Recommended
               </span>
             </div>
 
             <div className="mb-8">
-              <div className="text-sm font-semibold text-accent mb-3 uppercase tracking-wider">Commercial &amp; professional use</div>
+              <div className="text-sm font-semibold text-accent mb-3 uppercase tracking-wider">Power-user / commercial use</div>
 
               {/* price */}
               <div className="flex items-center gap-3 mb-1">
@@ -140,7 +140,7 @@ export default function PricingPage() {
               </div>
 
               <div className="text-[14px] text-text-muted mb-4">
-                Professional — built for all-day agent use
+                The best experience for all-day agent use
               </div>
 
               {/* billing toggle */}
@@ -176,10 +176,18 @@ export default function PricingPage() {
               <Item text="Install Superterm on any of your devices" />
               <Item text="15 colour themes and 10 fonts" />
               <Item text="Queued send — agents resume on a schedule, picking back up when your credits top up" />
+              <Item text="Multi-line text entry (Shift+Enter)" />
+              <Item text="Copy/paste from TUIs like opencode/amp" />
+              <Item text="Paste and upload images directly to agents" />
               <Item text="Login with GitHub (Device Code or your own OAuth App)" />
               <Item text="Login with OIDC (Keycloak, Auth0, Okta, Google, etc.)" />
               <Item text="Commercial use allowed, with email support" />
             </ul>
+
+            <p className="text-[13px] text-text/70 leading-relaxed mb-5">
+              If agents are part of your daily workflow, this is your tier. You get the best
+              experience &mdash; and your subscription directly funds Superterm&apos;s development.
+            </p>
 
             <a
               href={annual ? annualCheckoutURL : monthlyCheckoutURL}
@@ -187,7 +195,7 @@ export default function PricingPage() {
               data-polar-checkout-theme="dark"
               className="block w-full py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm hover:bg-accent-dim transition-colors text-center"
             >
-              Start 14-day free trial
+              Start 14-day trial of Professional
             </a>
             <p className="mt-3 text-[12px] text-text-muted/85 text-center">
               Then {annual ? "$20/mo billed annually" : "$25/mo"}. Card required &mdash; cancel any time before day 14.
