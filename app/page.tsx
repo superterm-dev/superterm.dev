@@ -687,7 +687,7 @@ export default function Home() {
               q="What's the difference between Community Edition and Professional?"
               a={
                 <>
-                  <p className="mb-3">Community Edition is a deliberately stripped-back build for hobbyists tinkering on a single device in their spare time: two themes, basic token login, community-only support, and no warranty. It's enough to try the idea — and not much more.</p>
+                  <p className="mb-3">Community Edition is a pared-back build for hobbyists tinkering on a single device in their spare time: two themes, basic token login, community-only support, and no warranty. It's a great way to get a feel for superterm.</p>
                   <p>Professional is the real product. Install on every device you own, 15 themes and 10 fonts, queued send, multi-line input, image paste, copy/paste from TUIs like opencode and amp, GitHub and OIDC login, and direct email support. If you reach for an agent more than the odd weekend, you'll outgrow Community Edition quickly — Professional is built for all-day use, and your subscription is what keeps superterm being developed.</p>
                 </>
               }
