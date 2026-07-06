@@ -71,6 +71,7 @@ export function PricingCard() {
       {/* features */}
       <ul className="text-[14px] text-left space-y-3.5 mb-10 max-w-xs mx-auto">
         <PricingItem text="Works with Claude Code, Codex, Amp, OpenCode, anything" />
+        <PricingItem text="Voice dictation to any agent — private, local speech-to-text with polish" />
         <PricingItem text="Attention system — stay fresh and focus only where you're needed" />
         <PricingItem text="Logbook — goals, timeline, and prompts per session" />
         <PricingItem text="Unblock agents from your phone" />

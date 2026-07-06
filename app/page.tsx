@@ -11,6 +11,7 @@ import {
   ArrowRightIcon,
   CommandSpotlightIcon,
   MaskIcon,
+  KeyboardIcon,
 } from "./icons";
 import { TunnelTabs } from "./TunnelTabs";
 import { DemoVideo } from "./DemoVideo";
@@ -234,6 +235,54 @@ function Sparkline({ value }: { value: number }) {
 
 
 /* ─── logbook panel mockup ─── */
+function MicGlyph({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 2.4a2 2 0 0 0-2 2v3.1a2 2 0 0 0 4 0V4.4a2 2 0 0 0-2-2Z" />
+      <path d="M3.8 7.1a4.2 4.2 0 0 0 8.4 0" />
+      <path d="M8 11.3v2.3" />
+      <path d="M5.7 13.6h4.6" />
+    </svg>
+  );
+}
+
+function DictationPreview() {
+  return (
+    <div className="w-full max-w-[420px] rounded-xl border border-border-bright/50 bg-surface shadow-2xl shadow-black/50 ring-1 ring-white/[0.03] overflow-hidden">
+      {/* header */}
+      <div className="flex items-center gap-2.5 px-4 pt-3.5 pb-3 border-b border-border/50">
+        <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+        <span className="text-[13px] font-semibold text-text font-sans">Dictation</span>
+        <span className="text-[11px] text-text-muted/50 font-mono">voice 4.2s</span>
+        {/* live level meter */}
+        <span className="ml-auto flex items-end gap-[3px] h-4">
+          {[6, 11, 16, 9, 13].map((h, i) => (
+            <span key={i} className="w-[3px] rounded-full bg-accent/70" style={{ height: h }} />
+          ))}
+        </span>
+        <span className="border border-border-bright/50 rounded p-1 text-text-muted/50">
+          <MicGlyph className="w-3 h-3" />
+        </span>
+      </div>
+      {/* transcript */}
+      <div className="mx-3 my-3 rounded-lg bg-bg/70 border border-border/40 px-3.5 py-3 text-[13.5px] leading-relaxed text-text/80 font-sans">
+        Build a small <span className="text-accent/80">MCP</span> server that adds web search to{" "}
+        <span className="text-accent/80">Qwen</span>, then deploy it to my box with{" "}
+        <span className="text-accent/80">arkade</span> and open a tunnel using{" "}
+        <span className="text-accent/80">inlets-pro</span>.
+      </div>
+      {/* actions */}
+      <div className="flex items-center justify-end gap-2 px-3 pb-3.5">
+        <span className="px-3 py-1.5 rounded-md border border-border/60 text-[12px] text-text-muted/60 font-sans">Cancel</span>
+        <span className="px-3 py-1.5 rounded-md border border-border/60 text-[12px] text-text-muted/80 font-sans flex items-center gap-1.5">
+          <MicGlyph className="w-3 h-3" /> Add
+        </span>
+        <span className="px-4 py-1.5 rounded-md bg-accent text-bg text-[12px] font-semibold font-sans">Send</span>
+      </div>
+    </div>
+  );
+}
+
 function LogbookPreview() {
   return (
     <div className="w-full max-w-[420px] rounded-xl border border-border-bright/50 bg-surface shadow-2xl shadow-black/50 ring-1 ring-white/[0.03] overflow-hidden">
@@ -313,6 +362,9 @@ export default function Home() {
             </a>
             <a href="/pricing/" className="hidden sm:inline hover:text-text transition-colors">
               Pricing
+            </a>
+            <a href="/changelog/" className="hidden sm:inline hover:text-text transition-colors">
+              Changelog
             </a>
             <a href="#faq" className="hidden sm:inline hover:text-text transition-colors">
               FAQ
@@ -481,6 +533,17 @@ export default function Home() {
               title="A clipboard that actually works"
               desc={<>Switched machine or agent? Copy/paste is broken again. Superterm is a browser. Select text, copy, paste. Every machine. Every time.<span className="block mt-2">Pause the screen and scroll back through any agent&apos;s output using tmux&apos;s copy mode.</span></>}
             />
+            <FeatureCard
+              icon={<KeyboardIcon className="w-5 h-5" />}
+              title="An input box built for agents"
+              desc={
+                <>
+                  Composing a real prompt in a terminal is painful. superterm gives you a proper input box: multi-line entry with <code className="font-mono text-accent/80 text-[11px]">Shift+Enter</code>, and paste or upload images straight to your agent — screenshots, mockups, error dialogs.
+                  <span className="block mt-2">Copy and paste cleanly in and out of TUIs like opencode and amp, even where they normally fight your terminal.</span>
+                  <span className="block mt-2 text-text-muted/70">Part of <a href="/pricing/" className="text-accent/80 hover:text-accent">Professional</a>.</span>
+                </>
+              }
+            />
           </div>
         </div>
       </section>
@@ -516,6 +579,44 @@ export default function Home() {
           </div>
           <div className="flex justify-center md:justify-end">
             <LogbookPreview />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── dictation spotlight ─── */}
+      <section className="py-28 px-6 border-t border-border/30">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div className="flex justify-center md:justify-start order-2 md:order-1">
+            <DictationPreview />
+          </div>
+          <div className="order-1 md:order-2">
+            <div className="flex items-center gap-2.5 mb-4">
+              <MicGlyph className="w-5 h-5 text-accent/70" />
+              <span className="text-sm font-semibold text-text">Dictation</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-5">
+              Talk to your agents.<br />Faster than typing.
+            </h2>
+            <p className="text-text/60 leading-relaxed text-[15px] mb-6">
+              Speak a prompt and superterm streams it to a session, transcribed live with a preview you can edit before it sends. Ideal on mobile, or any time a thought is quicker said than typed.
+            </p>
+            <ul className="space-y-3 text-[14px] text-text-muted">
+              <li className="flex items-start gap-3">
+                <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                <span>Live preview updates as you talk — edit, then send</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                <span>Knows your tools — <span className="font-mono text-accent/70 text-[12px]">MCP</span>, <span className="font-mono text-accent/70 text-[12px]">arkade</span>, <span className="font-mono text-accent/70 text-[12px]">Qwen</span> and more come out right</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                <span>Private by default — runs on a model you host, your audio never leaves it</span>
+              </li>
+            </ul>
+            <p className="text-[13px] text-text-muted/60 mt-6">
+              Part of <a href="/pricing/" className="text-accent/80 hover:text-accent">Professional</a>.
+            </p>
           </div>
         </div>
       </section>
@@ -625,7 +726,8 @@ export default function Home() {
           </h2>
           <p className="text-text/60 text-[15px] leading-relaxed mb-8 max-w-lg mx-auto">
             From the founder of OpenFaaS.
-            superterm is commercially supported, actively developed, and designed for the long term.
+            superterm is commercially supported,{" "}
+            <a href="/changelog/" className="text-accent/90 hover:text-accent">actively developed</a>, and designed for the long term.
           </p>
           <div className="grid sm:grid-cols-3 gap-6 text-[14px] text-text-muted">
             <div className="border border-border/60 rounded-xl p-5 bg-surface/50">
@@ -774,6 +876,7 @@ export default function Home() {
             <span>superterm</span>
           </div>
           <div className="flex items-center gap-4">
+            <a href="/changelog/" className="hover:text-text transition-colors">Changelog</a>
             <span>&copy; {new Date().getFullYear()} OpenFaaS Ltd.</span>
             <a href="/pricing/#eula" className="hover:text-text transition-colors">EULA</a>
           </div>

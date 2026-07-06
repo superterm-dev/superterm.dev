@@ -176,6 +176,7 @@ export default function PricingPage() {
 
             <ul className="text-[14px] text-text-muted space-y-3.5 mb-10 flex-1">
               <Item text="Everything in Community Edition" />
+              <Item text="Voice dictation to any agent — private, local speech-to-text with polish" />
               <Item text="Install Superterm on any of your devices" />
               <Item text="15 colour themes and 10 fonts" />
               <Item text="Queued send — agents resume on a schedule, picking back up when your credits top up" />
