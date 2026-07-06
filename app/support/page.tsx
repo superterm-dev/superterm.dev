@@ -28,6 +28,9 @@ export default function SupportPage() {
             <a href="/pricing/" className="hidden sm:inline hover:text-text transition-colors">
               Pricing
             </a>
+            <a href="/changelog/" className="hidden sm:inline hover:text-text transition-colors">
+              Changelog
+            </a>
             <a href="/support/" className="hidden sm:inline text-text transition-colors">
               Support
             </a>
@@ -176,6 +179,7 @@ export default function SupportPage() {
             <span>superterm</span>
           </a>
           <div className="flex items-center gap-4">
+            <a href="/changelog/" className="hover:text-text transition-colors">Changelog</a>
             <span>&copy; {new Date().getFullYear()} OpenFaaS Ltd.</span>
             <a href="/pricing/#eula" className="hover:text-text transition-colors">EULA</a>
           </div>

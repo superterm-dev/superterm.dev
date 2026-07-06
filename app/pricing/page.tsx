@@ -37,6 +37,9 @@ export default function PricingPage() {
             <a href="/#install" className="hidden sm:inline hover:text-text transition-colors">
               Install
             </a>
+            <a href="/changelog/" className="hidden sm:inline hover:text-text transition-colors">
+              Changelog
+            </a>
             <a href="/#faq" className="hidden sm:inline hover:text-text transition-colors">
               FAQ
             </a>
@@ -357,6 +360,7 @@ export default function PricingPage() {
             <span>superterm</span>
           </a>
           <div className="flex items-center gap-4">
+            <a href="/changelog/" className="hover:text-text transition-colors">Changelog</a>
             <span>&copy; {new Date().getFullYear()} OpenFaaS Ltd.</span>
             <a href="/pricing/#eula" className="hover:text-text transition-colors">EULA</a>
           </div>
