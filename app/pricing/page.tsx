@@ -1,19 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Script from "next/script";
 import { LogoIcon, CheckIcon, ArrowRightIcon } from "../icons";
+
+function VoiceBars() {
+  const heights = [7, 12, 16, 10, 13];
+  return (
+    <span className="inline-flex items-end gap-[2px] h-3.5 align-[-0.2em]" aria-hidden="true">
+      {heights.map((h, i) => (
+        <span
+          key={i}
+          className="w-[2.5px] rounded-full bg-accent/80 animate-pulse"
+          style={{ height: `${h}px`, animationDelay: `${i * 130}ms`, animationDuration: "1.2s" }}
+        />
+      ))}
+    </span>
+  );
+}
 
 const monthlyCheckoutURL =
   "https://buy.polar.sh/polar_cl_botuT8A6lHRVendAox4dNGtuMwVvU2Ufa9XAB0g03GM";
 const annualCheckoutURL =
   "https://buy.polar.sh/polar_cl_9L0aSMQQ2dXH2nS1Z0csCuNnb4SBGUQo9zmTZ1TXCre";
 
-function Item({ text }: { text: string }) {
+function Item({ text, icon }: { text: string; icon?: ReactNode }) {
   return (
     <li className="flex items-start gap-3">
       <CheckIcon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-      <span>{text}</span>
+      <span>
+        {icon && (
+          <span className="mr-1.5" aria-hidden="true">
+            {icon}
+          </span>
+        )}
+        {text}
+      </span>
     </li>
   );
 }
@@ -36,6 +58,9 @@ export default function PricingPage() {
             </a>
             <a href="/#install" className="hidden sm:inline hover:text-text transition-colors">
               Install
+            </a>
+            <a href="/pricing/" aria-current="page" className="hidden sm:inline text-text font-medium">
+              Pricing
             </a>
             <a href="/changelog/" className="hidden sm:inline hover:text-text transition-colors">
               Changelog
@@ -176,13 +201,13 @@ export default function PricingPage() {
 
             <ul className="text-[14px] text-text-muted space-y-3.5 mb-10 flex-1">
               <Item text="Everything in Community Edition" />
-              <Item text="Voice dictation to any agent — private, local speech-to-text with polish" />
+              <Item icon={<VoiceBars />} text="Voice dictation to any agent — private, local speech-to-text with polish" />
               <Item text="Install Superterm on any of your devices" />
-              <Item text="15 colour themes and 10 fonts" />
-              <Item text="Queued send — agents resume on a schedule, picking back up when your credits top up" />
+              <Item icon="🎨" text="15 colour themes and 10 fonts" />
+              <Item icon="⏱️" text="Queued send — agents resume on a schedule, picking back up when your credits top up" />
               <Item text="Multi-line text entry (Shift+Enter)" />
               <Item text="Copy/paste from TUIs like opencode/amp" />
-              <Item text="Paste and upload images directly to agents" />
+              <Item icon="📎" text="Paste and upload images directly to agents" />
               <Item text="Login with GitHub (Device Code or your own OAuth App)" />
               <Item text="Login with OIDC (Keycloak, Auth0, Okta, Google, etc.)" />
               <Item text="Commercial use allowed, with email support" />
