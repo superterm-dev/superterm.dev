@@ -19,6 +19,72 @@ function VoiceBars() {
   );
 }
 
+function Glyph({ children }: { children: ReactNode }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="inline-block w-3.5 h-3.5 text-accent/80 align-[-0.2em]"
+      aria-hidden="true"
+    >
+      {children}
+    </svg>
+  );
+}
+
+function PaletteGlyph() {
+  return (
+    <Glyph>
+      <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+      <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+      <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+      <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+    </Glyph>
+  );
+}
+
+function ClockGlyph() {
+  return (
+    <Glyph>
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </Glyph>
+  );
+}
+
+function ImageGlyph() {
+  return (
+    <Glyph>
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+      <circle cx="9" cy="9" r="2" />
+      <path d="m21 15-4.5-4.5L5 21" />
+    </Glyph>
+  );
+}
+
+function GitHubGlyph() {
+  return (
+    <Glyph>
+      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+    </Glyph>
+  );
+}
+
+function KeyGlyph() {
+  return (
+    <Glyph>
+      <path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L21 4" />
+      <path d="m21 2-9.6 9.6" />
+      <circle cx="7.5" cy="15.5" r="5.5" />
+    </Glyph>
+  );
+}
+
 const monthlyCheckoutURL =
   "https://buy.polar.sh/polar_cl_botuT8A6lHRVendAox4dNGtuMwVvU2Ufa9XAB0g03GM";
 const annualCheckoutURL =
@@ -203,13 +269,13 @@ export default function PricingPage() {
               <Item text="Everything in Community Edition" />
               <Item icon={<VoiceBars />} text="Voice dictation to any agent — private, local speech-to-text with polish" />
               <Item text="Install Superterm on any of your devices" />
-              <Item icon="🎨" text="15 colour themes and 10 fonts" />
-              <Item icon="⏱️" text="Queued send — agents resume on a schedule, picking back up when your credits top up" />
+              <Item icon={<PaletteGlyph />} text="15 colour themes and 10 fonts" />
+              <Item icon={<ClockGlyph />} text="Queued send — agents resume on a schedule, picking back up when your credits top up" />
               <Item text="Multi-line text entry (Shift+Enter)" />
               <Item text="Copy/paste from TUIs like opencode/amp" />
-              <Item icon="📎" text="Paste and upload images directly to agents" />
-              <Item text="Login with GitHub (Device Code or your own OAuth App)" />
-              <Item text="Login with OIDC (Keycloak, Auth0, Okta, Google, etc.)" />
+              <Item icon={<ImageGlyph />} text="Paste and upload images directly to agents" />
+              <Item icon={<GitHubGlyph />} text="Login with GitHub (Device Code or your own OAuth App)" />
+              <Item icon={<KeyGlyph />} text="Login with OIDC (Keycloak, Auth0, Okta, Google, etc.)" />
               <Item text="Commercial use allowed, with email support" />
             </ul>
 
