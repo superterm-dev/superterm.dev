@@ -2,6 +2,7 @@
 date: 2026-07-01
 tag: Pro
 title: Paste and upload images straight to your agent
+media: /media/image-paste-vllm
 ---
 
 Drop a screenshot, mockup, or error dialog right into the composer — no

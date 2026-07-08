@@ -2,6 +2,7 @@
 date: 2026-07-02
 tag: New
 title: Talk to your agents — voice dictation
+media: /media/voice-dictation
 ---
 
 Dictate to a session instead of typing. Speech streams over the

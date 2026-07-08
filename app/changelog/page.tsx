@@ -106,15 +106,20 @@ export default function ChangelogPage() {
                 {group.items.map((entry) => (
                   <article
                     key={entry.slug}
-                    className="border border-border-bright/50 rounded-2xl p-6 sm:p-8 bg-surface ring-1 ring-white/[0.02]"
+                    id={entry.slug}
+                    className="scroll-mt-20 border border-border-bright/50 rounded-2xl p-6 sm:p-8 bg-surface ring-1 ring-white/[0.02]"
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <span className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider ${tagStyles[entry.tag]}`}>
                         {entry.tag}
                       </span>
-                      <span className="text-[13px] text-text-muted/60">
+                      {/* The date is the entry's permalink, like a post timestamp */}
+                      <a
+                        href={`#${entry.slug}`}
+                        className="text-[13px] text-text-muted/60 hover:text-text-muted hover:underline transition-colors"
+                      >
                         {formatDate(entry.date)}
-                      </span>
+                      </a>
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold tracking-tight mb-3">
                       {entry.title}

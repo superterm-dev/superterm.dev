@@ -2,6 +2,7 @@
 date: 2026-07-05
 tag: New
 title: Session names that remember themselves
+media: /media/session-autocomplete
 ---
 
 Typing a new session name now offers a proper combobox: a

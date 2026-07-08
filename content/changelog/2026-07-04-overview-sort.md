@@ -2,6 +2,7 @@
 date: 2026-07-04
 tag: New
 title: Sort the overview by what needs you
+media: /media/overview-sort
 ---
 
 The overview now ranks **Activity** properly — running state first,
