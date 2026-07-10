@@ -62,6 +62,16 @@ install_superterm() {
     return 1
   fi
   chmod +x "${BIN_DIR}/superterm"
+
+  # The client TUI (superterm-tui) ships in the same image; install it too.
+  if [ -f "${workdir}/superterm-tui" ]; then
+    if mv "${workdir}/superterm-tui" "${BIN_DIR}/superterm-tui"; then
+      chmod +x "${BIN_DIR}/superterm-tui"
+    else
+      echo "Note: superterm installed, but superterm-tui could not be written to ${BIN_DIR}."
+    fi
+  fi
+
   rm -rf "${workdir}"
 }
 
@@ -82,3 +92,6 @@ if ! install_superterm; then
 fi
 
 echo "superterm installed to ${BIN_DIR}"
+if [ -x "${BIN_DIR}/superterm-tui" ]; then
+  echo "superterm-tui installed to ${BIN_DIR}"
+fi
