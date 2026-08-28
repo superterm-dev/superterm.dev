@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LogoIcon, ArrowRightIcon } from "../icons";
 import { getEntries, type Entry, type Tag } from "./entries";
 import { Media } from "./Media";
+import { CopyLink } from "./CopyLink";
 import { Markdown } from "./Markdown";
 
 export const metadata: Metadata = {
@@ -121,7 +122,8 @@ export default function ChangelogPage() {
                         {formatDate(entry.date)}
                       </a>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold tracking-tight mb-3">
+                    <h3 className="text-lg sm:text-xl font-bold tracking-tight mb-3 flex items-center gap-2.5">
+                      <CopyLink slug={entry.slug} />
                       {entry.title}
                     </h3>
                     <Markdown>{entry.body}</Markdown>
