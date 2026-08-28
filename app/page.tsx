@@ -428,6 +428,49 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── feature clips ─── */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3 text-center">
+            Built for the day-to-day.
+          </h2>
+          <p className="text-text-muted text-center mb-14 max-w-xl mx-auto">
+            The native TUI, spell check that keeps up with you, and agents that
+            ask each other before they ask you.
+          </p>
+          <div className="space-y-16">
+            {[
+              {
+                base: "/media/superterm-tui-tour",
+                title: "One TUI for every session",
+                body: "superterm-tui attaches over your server: sessions ranked by who needs you, palette, search, and voice dictation — from any terminal, on any machine.",
+              },
+              {
+                base: "/media/superterm-spell",
+                title: "Spell check, in flow",
+                body: "^G w checks a word as you type against a built-in dictionary, in under a millisecond. Press 1–5 to accept a suggestion; Enter drops it into your session.",
+              },
+              {
+                base: "/media/superterm-agent-mail",
+                title: "Agents mail each other",
+                body: "Durable mail with verified senders and doorbells that tell the recipient exactly what to run. Here one agent asks a second model for a design review.",
+              },
+            ].map((f) => (
+              <div key={f.base}>
+                <h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-2">
+                  {f.title}
+                </h3>
+                <p className="text-text-muted mb-5 max-w-2xl">{f.body}</p>
+                <ZoomableClip
+                  base={f.base}
+                  className="w-full rounded-xl border border-border-bright/50 ring-1 ring-white/[0.02]"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── problem ─── */}
       <section className="py-32 px-6">
         <div className="max-w-2xl mx-auto text-center">
