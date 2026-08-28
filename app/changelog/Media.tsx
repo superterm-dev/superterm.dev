@@ -2,6 +2,8 @@
 // one. Items ending in an image extension render as <img>; anything else is
 // treated as a clip base path resolving to .webm + .mp4 (+ .jpg poster).
 // See content/changelog/README.md for the ffmpeg recipe.
+import { ZoomableClip } from "../ZoomableClip";
+
 const IMAGE_RE = /\.(png|jpe?g|gif|webp|avif|svg)$/i;
 
 export function Media({ items }: { items: string[] }) {
@@ -23,19 +25,11 @@ export function Media({ items }: { items: string[] }) {
             className={`${itemClass} ${multi ? "" : "max-w-md"}`}
           />
         ) : (
-          <video
+          <ZoomableClip
             key={src}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster={`${src}.jpg`}
+            base={src}
             className={`${itemClass} ${multi ? "" : "max-w-md"}`}
-          >
-            <source src={`${src}.webm`} type="video/webm" />
-            <source src={`${src}.mp4`} type="video/mp4" />
-          </video>
+          />
         ),
       )}
     </div>
