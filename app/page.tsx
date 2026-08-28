@@ -15,6 +15,7 @@ import {
 } from "./icons";
 import { TunnelTabs } from "./TunnelTabs";
 import { DemoVideo } from "./DemoVideo";
+import { ZoomableClip } from "./ZoomableClip";
 
 /* ─── mock terminal screenshot ─── */
 function TerminalScreenshot() {
