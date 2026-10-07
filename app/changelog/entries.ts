@@ -12,6 +12,9 @@ export type Entry = {
   // Zero or more media items. A clip is a base path ("/media/queued-send")
   // resolving to .webm + .mp4; an image is a full path ("/media/x.png").
   media: string[];
+  // The clip has sound worth hearing (a voice demo): it is badged, and the
+  // enlarged copy plays unmuted.
+  audio: boolean;
   body: string; // raw markdown
 };
 
@@ -48,6 +51,7 @@ export function getEntries(): Entry[] {
       tag: (data.tag as Tag) ?? "New",
       title: String(data.title ?? ""),
       media: normaliseMedia(data),
+      audio: data.audio === true,
       body: content.trim(),
       draft: data.draft === true,
     };

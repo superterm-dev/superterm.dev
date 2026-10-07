@@ -127,7 +127,7 @@ export default function ChangelogPage() {
                       {entry.title}
                     </h3>
                     <Markdown>{entry.body}</Markdown>
-                    <Media items={entry.media} />
+                    <Media items={entry.media} audio={entry.audio} />
                   </article>
                 ))}
               </div>

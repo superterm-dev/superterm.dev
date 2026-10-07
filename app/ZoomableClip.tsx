@@ -1,18 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // A clip that opens into a page-filling lightbox on click. Clicking the
 // backdrop, the ×, or pressing Escape returns to the page. The inline
-// preview autoplays muted; the enlarged copy adds controls.
+// preview autoplays muted; the enlarged copy adds controls. A clip with
+// audio is badged "Sound on", and its enlarged copy starts with sound:
+// the click that opens it is the gesture browsers ask for.
 export function ZoomableClip({
   base,
   className,
+  audio = false,
 }: {
   base: string;
   className?: string;
+  audio?: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const big = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!open || !audio || !big.current) return;
+    const v = big.current;
+    v.muted = false;
+    v.currentTime = 0;
+    v.play().catch(() => {
+      v.muted = true; // the browser refused sound; the controls let the viewer unmute
+    });
+  }, [open, audio]);
 
   useEffect(() => {
     if (!open) return;
@@ -29,8 +44,9 @@ export function ZoomableClip({
 
   const clip = (cls: string, controls: boolean) => (
     <video
+      ref={controls ? big : undefined}
       autoPlay
-      loop
+      loop={!(controls && audio)}
       muted
       playsInline
       preload="metadata"
@@ -49,9 +65,14 @@ export function ZoomableClip({
         type="button"
         aria-label="Enlarge video"
         onClick={() => setOpen(true)}
-        className="block w-full cursor-zoom-in text-left"
+        className="relative block w-full cursor-zoom-in text-left"
       >
         {clip(className ?? "", false)}
+        {audio && (
+          <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-black/70 px-2.5 py-1 text-xs font-semibold text-white ring-1 ring-white/20">
+            🔊 Sound on · click to play with audio
+          </span>
+        )}
       </button>
       {open && (
         <div

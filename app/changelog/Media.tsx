@@ -6,7 +6,7 @@ import { ZoomableClip } from "../ZoomableClip";
 
 const IMAGE_RE = /\.(png|jpe?g|gif|webp|avif|svg)$/i;
 
-export function Media({ items }: { items: string[] }) {
+export function Media({ items, audio = false }: { items: string[]; audio?: boolean }) {
   if (!items.length) return null;
 
   const multi = items.length > 1;
@@ -28,6 +28,7 @@ export function Media({ items }: { items: string[] }) {
           <ZoomableClip
             key={src}
             base={src}
+            audio={audio}
             className={`${itemClass} ${multi ? "" : "max-w-md"}`}
           />
         ),
