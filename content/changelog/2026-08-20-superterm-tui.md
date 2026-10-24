@@ -5,13 +5,13 @@ title: superterm-tui — a native terminal client
 media: /media/superterm-tui-tour
 ---
 
-The whole of superterm, inside the terminal you already live in.
-`superterm-tui up --url https://your-server` attaches over the same
-server as the web UI: the session rail ranked by who needs you, the
-command palette, search, and voice dictation — all behind a single
-`^G` leader that works in every terminal, including macOS Terminal
-and GNOME Terminal.
+All your agents, in the terminal you already live in. The rail shows each one
+and who needs you: `^G 1` jumps to the agent that is asking, Enter answers it,
+and the work carries on; `^G l` keeps notes beside each session, `^G n`
+starts another. One `^G` leader works in every terminal, macOS
+Terminal and GNOME Terminal included; `superterm-tui up --url
+https://your-server` attaches to a server, and the clipboard, image paste
+included, stays on the machine you sit at.
 
-It ships alongside the server binary and stays in step with it via
-`superterm update`. Run it on the machine you sit at and the clipboard
-— and so image paste — stays local.
+In the clip, Claude Code and two OpenCode agents on GLM-5.3 Flash work on the
+same small project. The agents' working time is sped up and labelled.
